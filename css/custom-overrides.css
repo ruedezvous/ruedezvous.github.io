@@ -1,4 +1,4 @@
-/* custom-overrides.css — 强制恢复与移动端适配 */
+/* custom-overrides.css — 美观排版 + 移动端适配 + 首页/文章页配色 */
 
 /* 首选通过国内镜像加载 Noto Serif SC（避免 Google 被墙） */
 @import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
@@ -15,7 +15,6 @@ body.index .intro-header .post-preview h2 {
   font-family: 'Noto Serif SC', serif !important;
 }
 
-/* 首页菜单 hover 时略微加深 */
 body.index .navbar-nav li a:hover {
   color: #000 !important;
 }
@@ -28,19 +27,27 @@ body.post .page-heading h1 {
   font-family: 'Noto Serif SC', serif !important;
 }
 
-/* 全站正文优先字体 */
+/* 全站正文字体与排版 */
 body,
 .post, .post-content, article, .entry-content, .post-body {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', 'PingFang SC', 'Microsoft YaHei', serif !important;
   font-size: 16px !important;
-  line-height: 1.85 !important;
+  line-height: 1.9 !important;
   color: #222 !important;
+  text-align: justify !important;
+  text-justify: inter-ideograph !important;
   letter-spacing: 0.02em !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 修复首页标题变黑（强制白色，仅在非首页）*/
+/* 段落缩进与间距 */
+.post-content p {
+  text-indent: 2em !important;
+  margin-bottom: 1.2em !important;
+}
+
+/* 首页和文章页标题恢复白色 */
 .intro-header .site-heading h1,
 .intro-header .page-heading h1,
 .site-heading h1,
@@ -50,8 +57,8 @@ body,
 
 /* 文章区域左右内边距（解决太贴边）*/
 .post-content {
-  padding-left: 1.2rem !important;
-  padding-right: 1.2rem !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
   word-break: break-word !important;
 }
 
@@ -64,23 +71,24 @@ pre {
 
 /* 小屏（平板 / 手机）微调 */
 @media screen and (max-width: 1024px) {
-  body { font-size: 15.8px !important; line-height: 1.8 !important; }
-  .post-content { padding-left: 1.0rem !important; padding-right: 1.0rem !important; }
+  body { font-size: 15.8px !important; line-height: 1.85 !important; }
+  .post-content { padding-left: 1.2rem !important; padding-right: 1.2rem !important; }
 }
 
 @media screen and (max-width: 768px) {
-  body { font-size: 15.2px !important; line-height: 1.7 !important; }
-  .post-content { padding-left: 1.0rem !important; padding-right: 1.0rem !important; }
-  .post-content p { text-indent: 1.2em !important; margin-bottom: 0.9em !important; }
+  body { font-size: 15.4px !important; line-height: 1.8 !important; }
+  .post-content { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .post-content p { text-indent: 1.5em !important; margin-bottom: 1em !important; }
   h1 { font-size: 1.5em !important; }
   h2 { font-size: 1.3em !important; }
 }
 
 @media screen and (max-width: 480px) {
-  body { font-size: 15px !important; line-height: 1.6 !important; }
+  body { font-size: 15px !important; line-height: 1.7 !important; }
   .post-content { padding-left: 0.9rem !important; padding-right: 0.9rem !important; }
-  .post-content p { text-indent: 1em !important; }
+  .post-content p { text-indent: 1.2em !important; }
 }
 
 /* 链接颜色 */
-a { color: #0077b6 !important; }
+a { color: #0077b6 !important; text-decoration: none !important; }
+a:hover { text-decoration: underline !important; }
