@@ -1,0 +1,64 @@
+/* custom-overrides.css — 强制恢复与移动端适配 */
+
+/* 首选通过国内镜像加载 Noto Serif SC（避免 Google 被墙） */
+@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+
+/* 防止手机自动缩放字体 */
+html { -webkit-text-size-adjust: 100%; }
+
+/* 全站正文优先字体（加上必要的 fallback） */
+body,
+.post, .post-content, article, .entry-content, .post-body {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'PingFang SC', 'Microsoft YaHei', serif !important;
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+  color: #222 !important;
+  letter-spacing: 0.02em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 修复首页标题变黑（强制白色）*/
+.intro-header .site-heading h1,
+.intro-header .page-heading h1,
+.site-heading h1,
+.page-heading h1 {
+  color: #fff !important;
+}
+
+/* 文章区域左右内边距（解决太贴边）*/
+.post-content {
+  padding-left: 1.2rem !important;
+  padding-right: 1.2rem !important;
+  word-break: break-word !important;
+}
+
+/* 防止代码块撑破屏幕 */
+pre {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-x: auto;
+}
+
+/* 小屏（平板 / 手机）微调 */
+@media screen and (max-width: 1024px) {
+  body { font-size: 15.8px !important; line-height: 1.8 !important; }
+  .post-content { padding-left: 1.0rem !important; padding-right: 1.0rem !important; }
+}
+
+@media screen and (max-width: 768px) {
+  body { font-size: 15.2px !important; line-height: 1.7 !important; }
+  .post-content { padding-left: 1.0rem !important; padding-right: 1.0rem !important; }
+  .post-content p { text-indent: 1.2em !important; margin-bottom: 0.9em !important; }
+  h1 { font-size: 1.5em !important; }
+  h2 { font-size: 1.3em !important; }
+}
+
+@media screen and (max-width: 480px) {
+  body { font-size: 15px !important; line-height: 1.6 !important; }
+  .post-content { padding-left: 0.9rem !important; padding-right: 0.9rem !important; }
+  .post-content p { text-indent: 1em !important; }
+}
+
+/* 小修饰 */
+a { color: #0077b6 !important; }
