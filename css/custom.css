@@ -111,7 +111,7 @@ header.masthead .subheading {
 
 /* **首行缩进** - 仅针对段落（p）元素 */
 .container.post-container .post-content p {
-    text-indent: var(--body-text-indent); /* 首行缩进 2em */
+    text-indent: var(--body-text-indent) !important; /* 首行缩进 2em */
 }
 
 /* 修正正文排版对列表、引用等的影响 */
@@ -138,6 +138,10 @@ header.masthead .subheading {
     .container {
         padding-left: 15px;
         padding-right: 15px;
+    }
+
+    body, p, li, blockquote {
+        font-family: var(--chinese-font), var(--english-font) !important; 
     }
 
     /* 移动端字号略微放大，弥补屏幕小的问题，但仍保持轻盈的字重 */
