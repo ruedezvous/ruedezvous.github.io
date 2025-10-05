@@ -1,0 +1,74 @@
+/* custom.css – 优雅中文排版 for Clean Blog */
+
+body {
+  font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", "Source Han Serif SC", serif;
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: #222;
+  background-color: #fff;
+  letter-spacing: 0.03em;
+  word-break: break-word;
+}
+
+/* 正文段落 */
+.post-content p {
+  text-indent: 2em; /* 首行缩进 */
+  margin-bottom: 1.2em;
+}
+
+/* 标题 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: 0.02em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* 引用块 */
+blockquote {
+  font-style: italic;
+  color: #555;
+  border-left: 4px solid #aaa;
+  padding-left: 1em;
+  margin: 1.5em 0;
+}
+
+/* 行内代码与代码块 */
+code, pre {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  background-color: #f7f7f7;
+  border-radius: 4px;
+}
+
+/* 超链接 */
+a {
+  color: #0077b6;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,119,182,0.2);
+}
+a:hover {
+  color: #005f8c;
+  border-bottom: 1px solid rgba(0,119,182,0.5);
+}
+
+/* 图片与视频居中显示 */
+.post-content img, .post-content video {
+  display: block;
+  margin: 1.2em auto;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* 响应式调整：移动端更舒适的阅读体验 */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 15.5px;
+    line-height: 1.9;
+  }
+  .post-content p {
+    text-indent: 1.5em;
+  }
+}
