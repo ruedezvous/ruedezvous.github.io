@@ -1,163 +1,132 @@
-/* custom.css – 优雅中文排版 + 响应式优化 */
-/* 强制首页标题白色 */
-.intro-header .site-heading h1,
-.intro-header .page-heading h1 {
-    color: #ffffff !important;
-}
+/*
+ * custom.css
+ * 用于 Hexo clean-blog 主题的自定义排版
+ */
 
+/* ====================
+ * 1. 全局字体定义 (Font Definitions)
+ * ==================== */
+
+/*
+ * 导入自定义字体（如果您的主题未自动处理）
+ * 假设您已将 Noto Serif SC.ttf 放在 theme/source/fonts/ 目录下
+ */
 @font-face {
     font-family: 'Noto Serif SC';
-    src: url('/fonts/NotoSerifSC-Regular.woff2') format('woff2'),
-         url('/fonts/NotoSerifSC-Regular.ttf') format('truetype');
+    src: url('../fonts/Noto Serif SC.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
+/* 定义CSS变量，方便调整 */
+:root {
+    /* 字体设置 */
+    --chinese-font: 'Noto Serif SC', serif;
+    --english-font: serif;
+
+    /* 颜色设置 */
+    --color-white: #ffffff;
+    --color-black-gray: #333333; /* 比纯黑稍柔和的黑灰色 */
+
+    /* 正文排版 */
+    --body-font-size: 17px;
+    --body-line-height: 1.9;
+    --body-paragraph-margin-bottom: 1.5em; /* 段后距 */
+    --body-text-indent: 2em; /* 首行缩进 */
+}
+
+/* 应用全局字体：中文为 Noto Serif SC，英文为 Serif */
 body {
-  font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", "Source Han Serif SC", serif;
-  font-size: 17px;
-  line-height: 1.85;
-  color: #222;
-  background-color: #fff;
-  letter-spacing: 0.02em;
-  word-break: break-word;
-  margin: 0;
-  padding: 0;
+    font-family: var(--chinese-font), var(--english-font);
 }
 
-/* 正文段落 */
-.post-content p {
-  text-indent: 2em;
-  margin-bottom: 1.1em;
+/* 确保所有中文文本都优先使用 Noto Serif SC */
+h1, h2, h3, h4, h5, h6,
+p, li, a, span,
+blockquote, pre, code {
+    font-family: var(--chinese-font), var(--english-font);
 }
 
-/* 标题 */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-weight: 600;
-  color: #111;
-  letter-spacing: 0.02em;
-  margin-top: 1.4em;
-  margin-bottom: 0.5em;
-  line-height: 1.4;
+
+/* ====================
+ * 2. 首页 (Index/List Pages) 样式
+ * ==================== */
+
+/* 导航栏 (Navigation Bar) */
+.navbar a {
+    color: var(--color-white) !important; /* 导航栏链接文字为白色 */
 }
 
-/* 引用块 */
-blockquote {
-  font-style: italic;
-  color: #555;
-  border-left: 4px solid #aaa;
-  padding-left: 1em;
-  margin: 1.2em 0;
-  background: #fafafa;
+/* 头部标题 (Index Page Header Title) - 通常是站点名称/描述 */
+header.masthead h1,
+header.masthead .subheading {
+    color: var(--color-white) !important; /* 顶部大图区域的标题为白色 */
 }
 
-/* 行内代码与代码块 */
-code, pre {
-  font-family: "JetBrains Mono", "Courier New", monospace;
-  background-color: #f7f7f7;
-  border-radius: 4px;
+/* Body 的标题 (Post Preview Titles on Index Page) */
+.post-preview .post-title,
+.post-preview .post-subtitle {
+    color: var(--color-black-gray) !important; /* 列表页中的文章标题为黑灰色 */
 }
 
-/* 超链接 */
-a {
-  color: #0077b6;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0,119,182,0.2);
-}
-a:hover {
-  color: #005f8c;
-  border-bottom: 1px solid rgba(0,119,182,0.5);
-}
 
-/* 图片与视频居中显示 */
-.post-content img, .post-content video {
-  display: block;
-  margin: 1em auto;
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+/* ====================
+ * 3. 文章页 (Post Page) 正文排版
+ * ==================== */
+
+/* 针对文章正文的容器 (通常是 post-container 或 article) */
+.container.post-container .post-content,
+.container.post-container .post-content p {
+    /* 正文排版 */
+    text-align: justify; /* **两端对齐** */
+    font-size: var(--body-font-size); /* **字号 17px** */
+    line-height: var(--body-line-height); /* **行间距 1.9** */
+    margin-bottom: var(--body-paragraph-margin-bottom); /* **段后距** */
 }
 
-/* 🌿 响应式优化 */
-@media screen and (max-width: 1024px) {
-  body {
-    font-size: 16px;
-    line-height: 1.8;
-  }
-  .post-content p {
-    text-indent: 1.8em;
-  }
+/* 首行缩进 - 仅针对段落（p）元素 */
+.container.post-container .post-content p {
+    text-indent: var(--body-text-indent); /* **首行缩进** */
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    font-size: 15.5px;
-    line-height: 1.7;
-    padding: 0 1em;
-  }
-  .post-content p {
-    text-indent: 1.2em;
-    margin-bottom: 0.9em;
-  }
-  h1 { font-size: 1.6em; }
-  h2 { font-size: 1.4em; }
-  h3 { font-size: 1.2em; }
+/* 修正正文排版对列表、引用等的影响 */
+/* 确保列表、代码块、引用不缩进 */
+.container.post-container .post-content ul p,
+.container.post-container .post-content ol p,
+.container.post-container .post-content blockquote p,
+.container.post-container .post-content pre p {
+    text-indent: 0;
+}
+/* 确保列表项、引用块本身不被两端对齐影响 */
+.container.post-container .post-content ul,
+.container.post-container .post-content ol,
+.container.post-container .post-content blockquote {
+    text-align: left;
 }
 
-@media screen and (max-width: 480px) {
-  body {
-    font-size: 15px;
-    line-height: 1.6;
-  }
-  .post-content p {
-    text-indent: 1em;
-    margin-bottom: 0.8em;
-  }
-  h1, h2, h3, h4 {
-    margin-top: 1em;
-  }
-}
 
-/* 🌿 修复手机端字体与间距 */
+/* ====================
+ * 4. 响应式布局 (Responsive/Mobile Layout)
+ * ==================== */
 
-.post-content {
-  padding-left: 1.2em;
-  padding-right: 1.2em;
-  font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", "Source Han Serif SC", serif;
-  color: #222;
-}
+/* 确保网站在不同设备上有边距，避免贴边 */
+/* 这里的 max-width media query 针对手机等小屏幕设备 */
+@media (max-width: 768px) {
+    /* 针对小屏幕设备，增加容器的内边距 */
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
-/* 手机端优化 */
-@media screen and (max-width: 768px) {
-  .post-content {
-    padding-left: 1.2em;
-    padding-right: 1.2em;
-    font-size: 15.5px;
-    line-height: 1.75;
-  }
-  body {
-    padding-left: 1.2rem;
-    padding-right: 1.2rem;
-    line-height: 1.8;
-  }
+    /* 调整文章页的边距，通常是主内容区域 */
+    .col-lg-8, .col-md-10 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
 
-  p {
-    text-indent: 2em;
-  }
-
-  .post-preview {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-/* 主页标题恢复白色（防止语言切换影响） */
-.intro-header .page-heading h1,
-.intro-header .site-heading h1 {
-  color: #fff !important;
-}
-.intro-header .page-heading .subheading,
-.intro-header .site-heading .subheading {
-  color: rgba(255, 255, 255, 0.8) !important;
+    /* 在手机上，适当减小行间距和段后距，以提高阅读体验 */
+    :root {
+        --body-line-height: 1.7; /* 手机上行间距略小 */
+        --body-paragraph-margin-bottom: 1.2em;
+    }
 }
