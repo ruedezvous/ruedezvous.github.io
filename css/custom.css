@@ -1,6 +1,6 @@
 /*
  * custom.css
- * 用于 Hexo clean-blog 主题的自定义排版 - V3 (最终版)
+ * 用于 Hexo clean-blog 主题的自定义排版 - 最终版
  */
 
 /* ====================
@@ -14,7 +14,7 @@
 @font-face {
     font-family: 'Noto Serif SC';
     src: url('../fonts/Noto Serif SC.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: normal; /* 导入普通字重 */
     font-style: normal;
 }
 
@@ -29,22 +29,25 @@
     --color-black-gray: #333333;
 
     /* 正文排版 */
-    --body-font-size: 16px; /* **字号 16px** */
+    --body-font-size: 15px; /* **字号 15px** */
+    --body-font-weight: 300; /* **字重 light** */
     --body-line-height: 1.9;
     --body-paragraph-margin-bottom: 1.5em; /* 段后距 */
     --body-text-indent: 2em; /* **首行缩进 2em** */
 }
 
-/* 应用正文字体：中文为 Noto Serif SC，英文为 Serif */
+/* 应用正文字体和字重 */
 body {
     /* 默认给 body 应用目标字体，后续排除标题和导航栏 */
     font-family: var(--chinese-font), var(--english-font);
 }
 
-/* 确保正文中的主要元素使用目标字体 */
+/* 确保正文中的主要元素使用目标字体和 light 字重 */
 p, li, blockquote {
     font-family: var(--chinese-font), var(--english-font);
+    font-weight: var(--body-font-weight); /* **应用 light 字重** */
 }
+
 
 /* ====================
  * 2. 首页 (Index/List Pages) 和导航栏样式
@@ -56,11 +59,11 @@ header.masthead h1,
 header.masthead .subheading,
 .post-preview .post-title,
 .post-preview .post-subtitle {
-    /* 覆盖掉目标字体，强制使用系统默认/主题默认字体 */
+    /* 覆盖目标字体，强制使用系统默认/主题默认字体 */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
 
-/* 颜色设置 */
+/* 颜色设置（与之前相同） */
 .navbar a {
     color: var(--color-white) !important;
 }
@@ -84,18 +87,17 @@ header.masthead .subheading {
 .container.post-container .post-content p {
     /* 正文排版 */
     text-align: justify; /* 两端对齐 */
-    font-size: var(--body-font-size); /* 字号 16px */
+    font-size: var(--body-font-size); /* 字号 15px */
     line-height: var(--body-line-height); /* 行间距 1.9 */
     margin-bottom: var(--body-paragraph-margin-bottom); /* 段后距 */
 }
 
 /* **首行缩进** - 仅针对段落（p）元素 */
 .container.post-container .post-content p {
-    text-indent: var(--body-text-indent); /* **首行缩进** */
+    text-indent: var(--body-text-indent); /* 首行缩进 */
 }
 
 /* 修正正文排版对列表、引用等的影响 */
-/* 确保列表、代码块、引用等不需要缩进 */
 .container.post-container .post-content ul p,
 .container.post-container .post-content ol p,
 .container.post-container .post-content blockquote p,
@@ -115,8 +117,8 @@ header.masthead .subheading {
 
 /* 确保网站在不同设备上有边距，避免贴边 */
 @media (max-width: 768px) {
-    /* **手机端保留目标字体**：无需额外设置，因为 body 已经默认应用了目标字体 */
-
+    /* 手机端保留目标字体，无需更改 body 字体 */
+    
     /* 增加容器的内边距，防止贴边 */
     .container {
         padding-left: 15px;
