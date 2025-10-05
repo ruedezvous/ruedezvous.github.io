@@ -1,6 +1,6 @@
 /*
  * custom.css
- * 用于 Hexo clean-blog 主题的自定义排版 - 最终版
+ * 用于 Hexo clean-blog 主题的自定义排版 - 优化阅读体验版
  */
 
 /* ====================
@@ -14,9 +14,17 @@
 @font-face {
     font-family: 'Noto Serif SC';
     src: url('../fonts/Noto Serif SC.ttf') format('truetype');
-    font-weight: normal; /* 导入普通字重 */
+    /* 尝试导入 Light 和 Regular 两个字重，以增加对比度 */
+    font-weight: 300; /* Light */
     font-style: normal;
 }
+@font-face {
+    font-family: 'Noto Serif SC';
+    src: url('../fonts/Noto Serif SC.ttf') format('truetype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
+
 
 /* 定义CSS变量 */
 :root {
@@ -26,26 +34,36 @@
 
     /* 颜色设置 */
     --color-white: #ffffff;
-    --color-black-gray: #333333;
+    --color-black-gray: #333333; /* 标题黑灰色 */
+    --color-text-normal: #404040; /* 默认正文颜色：比标题略浅，阅读更舒适 */
+    --color-text-strong: #202020; /* 加粗文本颜色：更深，与普通文本对比明显 */
 
     /* 正文排版 */
-    --body-font-size: 15px; /* **字号 15px** */
-    --body-font-weight: 300; /* **字重 light** */
-    --body-line-height: 1.9;
-    --body-paragraph-margin-bottom: 1.5em; /* 段后距 */
+    --body-font-size: 14.5px; /* **字号再缩小一点，优化阅读** */
+    --body-font-weight-normal: 300; /* **默认字重 Light** */
+    --body-line-height: 1.85; /* 行间距略微调整，保持舒适 */
+    --body-paragraph-margin-bottom: 1.4em; /* 段后距 */
     --body-text-indent: 2em; /* **首行缩进 2em** */
 }
 
-/* 应用正文字体和字重 */
+/* 应用正文字体和默认字重/颜色 */
 body {
-    /* 默认给 body 应用目标字体，后续排除标题和导航栏 */
     font-family: var(--chinese-font), var(--english-font);
+    color: var(--color-text-normal);
+    font-weight: var(--body-font-weight-normal);
 }
 
-/* 确保正文中的主要元素使用目标字体和 light 字重 */
+/* 确保正文中的主要元素使用目标字体和 Light 字重 */
 p, li, blockquote {
     font-family: var(--chinese-font), var(--english-font);
-    font-weight: var(--body-font-weight); /* **应用 light 字重** */
+    font-weight: var(--body-font-weight-normal);
+    color: var(--color-text-normal);
+}
+
+/* **加粗字体（strong/b）样式：字重和颜色加深，形成明显对比** */
+strong, b {
+    font-weight: 700; /* Bold */
+    color: var(--color-text-strong); /* 颜色加深 */
 }
 
 
@@ -53,13 +71,12 @@ p, li, blockquote {
  * 2. 首页 (Index/List Pages) 和导航栏样式
  * ==================== */
 
-/* **重置导航栏和头部标题字体**：使用主题默认的 Sans-serif 字体栈 */
+/* 重置导航栏和头部标题字体：使用主题默认的 Sans-serif 字体栈 */
 .navbar a,
 header.masthead h1,
 header.masthead .subheading,
 .post-preview .post-title,
 .post-preview .post-subtitle {
-    /* 覆盖目标字体，强制使用系统默认/主题默认字体 */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
 
@@ -87,14 +104,14 @@ header.masthead .subheading {
 .container.post-container .post-content p {
     /* 正文排版 */
     text-align: justify; /* 两端对齐 */
-    font-size: var(--body-font-size); /* 字号 15px */
-    line-height: var(--body-line-height); /* 行间距 1.9 */
+    font-size: var(--body-font-size); /* 字号 14.5px */
+    line-height: var(--body-line-height); /* 行间距 1.85 */
     margin-bottom: var(--body-paragraph-margin-bottom); /* 段后距 */
 }
 
 /* **首行缩进** - 仅针对段落（p）元素 */
 .container.post-container .post-content p {
-    text-indent: var(--body-text-indent); /* 首行缩进 */
+    text-indent: var(--body-text-indent); /* 首行缩进 2em */
 }
 
 /* 修正正文排版对列表、引用等的影响 */
@@ -115,19 +132,23 @@ header.masthead .subheading {
  * 4. 响应式布局 (Responsive/Mobile Layout)
  * ==================== */
 
-/* 确保网站在不同设备上有边距，避免贴边 */
+/* **移动端也做相应调整** */
 @media (max-width: 768px) {
-    /* 手机端保留目标字体，无需更改 body 字体 */
-    
     /* 增加容器的内边距，防止贴边 */
     .container {
         padding-left: 15px;
         padding-right: 15px;
     }
 
+    /* 移动端字号略微放大，弥补屏幕小的问题，但仍保持轻盈的字重 */
+    .container.post-container .post-content,
+    .container.post-container .post-content p {
+        font-size: 15px; /* 移动端调整到 15px */
+    }
+
     /* 在手机上，适当减小行间距和段后距，以提高阅读体验 */
     :root {
-        --body-line-height: 1.7; /* 手机上行间距略小 */
-        --body-paragraph-margin-bottom: 1.2em;
+        --body-line-height: 1.7; 
+        --body-paragraph-margin-bottom: 1.0em;
     }
 }
