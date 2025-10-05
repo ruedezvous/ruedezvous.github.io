@@ -1,181 +1,86 @@
-/* =========================================
-   custom-overrides.css — 视觉修复 + 移动端适配
-   by Rue
-   ========================================= */
+/* custom-overrides.css — 强制恢复与移动端适配 */
 
-/* 使用国内镜像加载 Noto Serif SC，防止被墙 */
+/* 首选通过国内镜像加载 Noto Serif SC（避免 Google 被墙） */
 @import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 
 /* 防止手机自动缩放字体 */
-html {
-  -webkit-text-size-adjust: 100%;
+html { -webkit-text-size-adjust: 100%; }
+
+/* 首页（index页）标题与菜单样式 */
+body.index .site-heading h1,
+body.index .site-heading h2,
+body.index .navbar-nav li a,
+body.index .intro-header .post-preview h2 {
+  color: #222 !important;
+  font-family: 'Noto Serif SC', serif !important;
 }
 
-/* 全局正文字体与颜色 */
+/* 首页菜单 hover 时略微加深 */
+body.index .navbar-nav li a:hover {
+  color: #000 !important;
+}
+
+/* 文章页标题（post page）样式 */
+body.post .intro-header .post-heading h1,
+body.post .post-title,
+body.post .page-heading h1 {
+  color: #fff !important;
+  font-family: 'Noto Serif SC', serif !important;
+}
+
+/* 全站正文优先字体 */
 body,
 .post, .post-content, article, .entry-content, .post-body {
   font-family: 'Noto Serif SC', 'Source Han Serif SC', 'PingFang SC', 'Microsoft YaHei', serif !important;
   font-size: 16px !important;
-  line-height: 1.9 !important;
+  line-height: 1.85 !important;
   color: #222 !important;
-  letter-spacing: 0.03em !important;
-  text-align: justify !important;
+  letter-spacing: 0.02em !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fff;
 }
 
-/* =====================
-   标题与导航修复
-   ===================== */
-
-/* 恢复首页 / 文章页标题为白色 */
+/* 修复首页标题变黑（强制白色，仅在非首页）*/
 .intro-header .site-heading h1,
 .intro-header .page-heading h1,
 .site-heading h1,
-.page-heading h1,
-.post-heading h1,
-.post-title {
+.page-heading h1 {
   color: #fff !important;
-  font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
-/* 导航栏文字颜色与悬停效果 */
-.navbar-custom .nav li a {
-  color: #fff !important;
-  font-family: "Open Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-weight: 500;
-  transition: all 0.2s ease;
+/* 文章区域左右内边距（解决太贴边）*/
+.post-content {
+  padding-left: 1.2rem !important;
+  padding-right: 1.2rem !important;
+  word-break: break-word !important;
 }
 
-.navbar-custom .nav li a:hover {
-  color: #f0f0f0 !important;
-  text-decoration: none;
-}
-
-/* =====================
-   正文与排版优化
-   ===================== */
-
-/* 恢复首行缩进与行距（桌面端） */
-.post-content p {
-  text-indent: 2em !important;
-  margin-bottom: 1.1em !important;
-  line-height: 1.9 !important;
-  text-align: justify !important;
-}
-
-/* 图片、代码块自适应 */
-.post-content img {
-  display: block;
-  margin: 1.4em auto;
-  max-width: 100%;
-  height: auto;
-}
-
+/* 防止代码块撑破屏幕 */
 pre {
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
   overflow-x: auto;
-  background: #f8f8f8 !important;
-  border-radius: 5px;
-  padding: 0.6em 0.9em;
 }
 
-/* =====================
-   链接与标签（tags）
-   ===================== */
-
-/* 全局链接风格修复 */
-a {
-  color: #444 !important;
-  text-decoration: none !important;
-  transition: all 0.25s ease;
-}
-
-a:hover,
-a:focus {
-  color: #0077b6 !important;
-  text-decoration: underline !important;
-}
-
-/* 标签（tag）样式 */
-.tags a {
-  display: inline-block;
-  background-color: #f3f3f3;
-  color: #555 !important;
-  padding: 4px 8px;
-  margin: 3px 4px 3px 0;
-  border-radius: 3px;
-  font-size: 14px;
-}
-
-.tags a:hover {
-  background-color: #0077b6;
-  color: #fff !important;
-}
-
-/* =====================
-   边距与移动端优化
-   ===================== */
-
-.post-content {
-  padding-left: 1.3rem !important;
-  padding-right: 1.3rem !important;
-  word-break: break-word !important;
-}
-
-/* 平板端 */
+/* 小屏（平板 / 手机）微调 */
 @media screen and (max-width: 1024px) {
-  body {
-    font-size: 15.8px !important;
-    line-height: 1.85 !important;
-  }
-  .post-content {
-    padding-left: 1.0rem !important;
-    padding-right: 1.0rem !important;
-  }
+  body { font-size: 15.8px !important; line-height: 1.8 !important; }
+  .post-content { padding-left: 1.0rem !important; padding-right: 1.0rem !important; }
 }
 
-/* 手机端 */
 @media screen and (max-width: 768px) {
-  body {
-    font-size: 15.2px !important;
-    line-height: 1.8 !important;
-  }
-  .post-content {
-    padding-left: 1.0rem !important;
-    padding-right: 1.0rem !important;
-  }
-  .post-content p {
-    text-indent: 1.5em !important;
-    margin-bottom: 1em !important;
-    text-align: justify !important;
-  }
+  body { font-size: 15.2px !important; line-height: 1.7 !important; }
+  .post-content { padding-left: 1.0rem !important; padding-right: 1.0rem !important; }
+  .post-content p { text-indent: 1.2em !important; margin-bottom: 0.9em !important; }
   h1 { font-size: 1.5em !important; }
   h2 { font-size: 1.3em !important; }
 }
 
-/* 小屏（极窄） */
 @media screen and (max-width: 480px) {
-  body {
-    font-size: 15px !important;
-    line-height: 1.75 !important;
-  }
-  .post-content {
-    padding-left: 0.9rem !important;
-    padding-right: 0.9rem !important;
-  }
-  .post-content p {
-    text-indent: 1.2em !important;
-    text-align: justify !important;
-  }
+  body { font-size: 15px !important; line-height: 1.6 !important; }
+  .post-content { padding-left: 0.9rem !important; padding-right: 0.9rem !important; }
+  .post-content p { text-indent: 1em !important; }
 }
 
-/* 页脚灰度化 */
-footer,
-.footer {
-  color: #999 !important;
-  font-size: 14px;
-}
+/* 链接颜色 */
+a { color: #0077b6 !important; }
