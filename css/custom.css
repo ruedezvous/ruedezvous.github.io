@@ -105,6 +105,32 @@ a:hover {
     margin-top: 1em;
   }
 }
+
+/* 🌿 修复手机端字体与间距 */
+
 .post-content {
-  padding: 0 1em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+  font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", "Source Han Serif SC", serif;
+  color: #222;
+}
+
+/* 手机端优化 */
+@media screen and (max-width: 768px) {
+  .post-content {
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    font-size: 15.5px;
+    line-height: 1.75;
+  }
+}
+
+/* 主页标题恢复白色（防止语言切换影响） */
+.intro-header .page-heading h1,
+.intro-header .site-heading h1 {
+  color: #fff !important;
+}
+.intro-header .page-heading .subheading,
+.intro-header .site-heading .subheading {
+  color: rgba(255, 255, 255, 0.8) !important;
 }
