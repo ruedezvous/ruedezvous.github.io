@@ -1,4 +1,17 @@
 /* custom.css – 优雅中文排版 + 响应式优化 */
+/* 强制首页标题白色 */
+.intro-header .site-heading h1,
+.intro-header .page-heading h1 {
+    color: #ffffff !important;
+}
+
+@font-face {
+    font-family: 'Noto Serif SC';
+    src: url('/fonts/NotoSerifSC-Regular.woff2') format('woff2'),
+         url('/fonts/NotoSerifSC-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
   font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", "Source Han Serif SC", serif;
@@ -122,6 +135,20 @@ a:hover {
     padding-right: 1.2em;
     font-size: 15.5px;
     line-height: 1.75;
+  }
+  body {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    line-height: 1.8;
+  }
+
+  p {
+    text-indent: 2em;
+  }
+
+  .post-preview {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
