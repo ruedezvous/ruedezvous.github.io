@@ -1,36 +1,20 @@
-/* custom-overrides.css — 美观排版 + 移动端适配 + 首页/文章页配色 */
+/* =========================================
+   custom-overrides.css — 全站字体/排版优化
+   修复 post page 标题、导航栏颜色、首行缩进
+   ========================================= */
 
-/* 首选通过国内镜像加载 Noto Serif SC（避免 Google 被墙） */
+/* 国内镜像加载 Noto Serif SC（中文字体） */
 @import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 
 /* 防止手机自动缩放字体 */
 html { -webkit-text-size-adjust: 100%; }
 
-/* 首页（index页）标题与菜单样式 */
-body.index .site-heading h1,
-body.index .site-heading h2,
-body.index .navbar-nav li a,
-body.index .intro-header .post-preview h2 {
-  color: #222 !important;
-  font-family: 'Noto Serif SC', serif !important;
-}
-
-body.index .navbar-nav li a:hover {
-  color: #000 !important;
-}
-
-/* 文章页标题（post page）样式 */
-body.post .intro-header .post-heading h1,
-body.post .post-title,
-body.post .page-heading h1 {
-  color: #fff !important;
-  font-family: 'Noto Serif SC', serif !important;
-}
-
-/* 全站正文字体与排版 */
+/* =========================================
+   全站正文字体与排版
+   ========================================= */
 body,
 .post, .post-content, article, .entry-content, .post-body {
-  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'PingFang SC', 'Microsoft YaHei', serif !important;
+  font-family: 'Noto Serif SC', serif !important; /* 中文 Noto Serif SC，英文 Serif */
   font-size: 16px !important;
   line-height: 1.9 !important;
   color: #222 !important;
@@ -41,21 +25,13 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 段落缩进与间距 */
+/* 段落首行缩进 */
 .post-content p {
   text-indent: 2em !important;
   margin-bottom: 1.2em !important;
 }
 
-/* 首页和文章页标题恢复白色 */
-.intro-header .site-heading h1,
-.intro-header .page-heading h1,
-.site-heading h1,
-.page-heading h1 {
-  color: #fff !important;
-}
-
-/* 文章区域左右内边距（解决太贴边）*/
+/* 文章区域左右内边距 */
 .post-content {
   padding-left: 1.5rem !important;
   padding-right: 1.5rem !important;
@@ -69,7 +45,71 @@ pre {
   overflow-x: auto;
 }
 
-/* 小屏（平板 / 手机）微调 */
+/* =========================================
+   首页 index 页面标题 & 文章预览
+   ========================================= */
+body.index .site-heading h1,
+body.index .site-heading h2,
+body.index .intro-header .post-preview h2 {
+  color: #222 !important; /* 灰黑色 */
+  font-family: 'Noto Serif SC', serif !important;
+}
+
+/* 首页导航栏 */
+body.index .navbar-nav li a,
+body:not(.post) .navbar-nav li a {
+  color: #fff !important;
+  font-family: 'Noto Serif SC', serif !important;
+}
+
+body.index .navbar-nav li a:hover,
+body:not(.post) .navbar-nav li a:hover {
+  color: #f0f0f0 !important;
+}
+
+/* =========================================
+   post page 文章标题（白色） & font-family
+   ========================================= */
+body.post .intro-header .post-heading h1,
+body.post .post-title,
+body.post .page-heading h1 {
+  color: #fff !important;
+  font-family: 'Noto Serif SC', serif !important;
+}
+
+/* =========================================
+   链接样式（全站） 
+   ========================================= */
+a { 
+  color: #0077b6 !important; 
+  text-decoration: none !important; 
+}
+
+a:hover,
+a:focus { 
+  color: #0077b6 !important;
+  text-decoration: underline !important; 
+}
+
+/* 标签 tag 样式 */
+.tags a {
+  display: inline-block;
+  background-color: #f3f3f3;
+  color: #555 !important;
+  padding: 4px 8px;
+  margin: 3px 4px 3px 0;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.tags a:hover {
+  background-color: #0077b6;
+  color: #fff !important;
+}
+
+/* =========================================
+   响应式优化
+   ========================================= */
 @media screen and (max-width: 1024px) {
   body { font-size: 15.8px !important; line-height: 1.85 !important; }
   .post-content { padding-left: 1.2rem !important; padding-right: 1.2rem !important; }
@@ -88,7 +128,3 @@ pre {
   .post-content { padding-left: 0.9rem !important; padding-right: 0.9rem !important; }
   .post-content p { text-indent: 1.2em !important; }
 }
-
-/* 链接颜色 */
-a { color: #0077b6 !important; text-decoration: none !important; }
-a:hover { text-decoration: underline !important; }
