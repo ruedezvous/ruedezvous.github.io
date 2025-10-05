@@ -1,19 +1,21 @@
-/* custom.css – 优雅中文排版 for Clean Blog */
+/* custom.css – 优雅中文排版 + 响应式优化 */
 
 body {
   font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", "Source Han Serif SC", serif;
-  font-size: 16.5px;
+  font-size: 17px;
   line-height: 1.85;
   color: #222;
   background-color: #fff;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   word-break: break-word;
+  margin: 0;
+  padding: 0;
 }
 
 /* 正文段落 */
 .post-content p {
-  text-indent: 2em; /* 首行缩进 */
-  margin-bottom: 1.2em;
+  text-indent: 2em;
+  margin-bottom: 1.1em;
 }
 
 /* 标题 */
@@ -22,8 +24,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   color: #111;
   letter-spacing: 0.02em;
-  margin-top: 1.5em;
+  margin-top: 1.4em;
   margin-bottom: 0.5em;
+  line-height: 1.4;
 }
 
 /* 引用块 */
@@ -32,7 +35,8 @@ blockquote {
   color: #555;
   border-left: 4px solid #aaa;
   padding-left: 1em;
-  margin: 1.5em 0;
+  margin: 1.2em 0;
+  background: #fafafa;
 }
 
 /* 行内代码与代码块 */
@@ -56,19 +60,51 @@ a:hover {
 /* 图片与视频居中显示 */
 .post-content img, .post-content video {
   display: block;
-  margin: 1.2em auto;
+  margin: 1em auto;
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* 响应式调整：移动端更舒适的阅读体验 */
+/* 🌿 响应式优化 */
+@media screen and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .post-content p {
+    text-indent: 1.8em;
+  }
+}
+
 @media screen and (max-width: 768px) {
   body {
     font-size: 15.5px;
-    line-height: 1.9;
+    line-height: 1.7;
+    padding: 0 1em;
   }
   .post-content p {
-    text-indent: 1.5em;
+    text-indent: 1.2em;
+    margin-bottom: 0.9em;
   }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.4em; }
+  h3 { font-size: 1.2em; }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .post-content p {
+    text-indent: 1em;
+    margin-bottom: 0.8em;
+  }
+  h1, h2, h3, h4 {
+    margin-top: 1em;
+  }
+}
+.post-content {
+  padding: 0 1em;
 }
