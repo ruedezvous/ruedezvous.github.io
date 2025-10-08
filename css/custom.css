@@ -256,55 +256,6 @@ hr.post-heading-small,
   background-color: #43A047 !important;
 }
 
-/* ✅ 修复 Waline 点赞显示 - 优化版 */
-
-/* 1. 确保每个点赞项（图标+数字）能弹性显示 */
-.wl-reaction-item {
-  /* 保持您的基本设置：内联弹性布局、居中、间距和字体大小 */
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 6px !important;
-  font-size: 1.3rem !important;
-
-/* ✅ Waline 点赞修复：宽度和高度优化 */
-
-/* 1. 确保点赞项容器能根据内容自动调整宽度 */
-.wl-reaction-item {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 6px !important;
-  font-size: 1.3rem !important;
-  
-  /* 确保宽度由内容决定，不设置固定宽度或 min-width */
-  width: auto !important; 
-}
-
-/* 2. 核心修复：确保数字不换行且有足够的水平空间 */
-.wl-reaction-text {
-  display: inline-block !important;
-  margin-left: 4px !important;
-  font-size: 0.8rem !important;
-  vertical-align: middle;
-
-  /* 【核心修复】防止数字太长时换行被截断 (这是宽度截断最常见的原因) */
-  white-space: nowrap !important;
-}
-
-/* 3. 移除按钮对高度的限制，让其自适应 */
-.wl-reaction button {
-  /* 移除您之前设置的 min-height 和 height，让内容决定高度 */
-  height: auto !important;
-  min-height: unset !important; /* 取消最小高度限制 */
-
-  /* 推荐：使用 padding 增加点击区域，同时不限制内容高度 */
-  padding: 5px 8px !important; 
-
-  /* 确保按钮内容溢出时是可见的，而不是被截断 */
-  overflow: visible !important; 
-}
-}
 /* ==============================
    Hexo Post 正文优化
    ============================== */
