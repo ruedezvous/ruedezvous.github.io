@@ -66,7 +66,7 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="stylesheet" href="/css/custom.css?v=9">
+    <link rel="stylesheet" href="/css/custom.css?v=10">
  
     <!-- Custom Fonts -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -90,8 +90,140 @@
     <!-- favicon -->
     
 <link rel="stylesheet" href="https://unpkg.com/@waline/client/dist/waline.css" />
-<link rel="stylesheet" href="/css/custom.css?v=9">
 
+<style type="text/css">
+/* ==================================================
+ * Waline 评论区简洁化与调性调整 (已修正语法)
+ * ================================================== */
+
+/* 强制 Waline 评论区使用博客的自定义字体 */
+.wl-container,
+.wl-container button,
+.wl-container input,
+.wl-container textarea,
+.wl-container .wl-emoji-popup {
+    font-family: var(--chinese-font), var(--english-font), sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    color: var(--color-text-normal) !important;
+}
+
+/* 统一评论区背景色和边框 */
+.wl-container {
+    background-color: var(--color-white) !important;
+    border-radius: 8px !important;
+    padding: 20px 0 !important;
+    margin-top: 30px !important;
+}
+
+/* 隐藏不必要的元素 */
+.wl-power-by, /* Powered By Waline */
+.wl-meta-list, /* 隐藏 Waline 的访问统计 */
+.wl-header-actions, /* 隐藏 Waline 的通知功能 */
+.wl-comment-action-reaction-btn /* 隐藏 Waline 默认的点赞表情 */
+{
+    display: none !important;
+}
+
+/* ==================================================
+ * 评论输入框和按钮美化
+ * ================================================== */
+
+/* 评论输入框的边框和背景 */
+.wl-editor {
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    background-color: var(--color-white) !important;
+    box-shadow: none !important;
+}
+
+/* 评论按钮样式 (强制蓝色) */
+.wl-btn-send {
+    background-color: #3B82F6 !important;
+    color: var(--color-white) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 8px 15px !important;
+    transition: background-color 0.3s ease !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+}
+
+/* 鼠标悬停时的按钮颜色 */
+.wl-btn-send:hover {
+    background-color: #2563EB !important;
+}
+
+/* 表情和图片上传按钮的样式 */
+.wl-header .wl-icon-btn {
+    color: var(--color-text-normal) !important;
+    transition: color 0.3s ease !important;
+}
+
+/* ==================================================
+ * 简化点赞图标 (核心)
+ * ================================================== */
+
+/* 强制应用简洁爱心图标容器 */
+.wl-comment-action .wl-action-item[data-type="like"] {
+    display: flex !important; 
+    align-items: center !important; 
+    cursor: pointer !important;
+    color: var(--color-text-normal) !important; 
+    transition: color 0.3s ease !important;
+}
+
+/* 未点赞状态的爱心图标 */
+.wl-comment-action .wl-action-item[data-type="like"]::before {
+    content: '❤️' !important; /* 使用简洁的爱心表情符号 */
+    font-size: 1.2em !important; 
+    margin-right: 5px !important;
+}
+
+/* 已点赞状态的爱心图标 */
+.wl-comment-action .wl-action-item[data-type="like"].active::before {
+    content: '❤️' !important;
+    color: #ff6b6b !important; /* 点赞后变成红色 */
+}
+
+/* 点赞数字的样式 */
+.wl-comment-action .wl-action-item[data-type="like"] .wl-count {
+    color: var(--color-text-normal) !important;
+    font-size: 0.9em !important;
+}
+.wl-comment-action .wl-action-item[data-type="like"].active .wl-count {
+    color: #ff6b6b !important;
+}
+
+
+/* ==================================================
+ * 评论列表样式
+ * ================================================== */
+
+/* 评论卡片背景和边框 */
+.wl-card {
+    background-color: var(--color-white) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    margin-bottom: 15px !important;
+    padding: 15px !important;
+    box-shadow: none !important;
+}
+
+/* 评论内容和回复按钮 */
+.wl-card .wl-nick,
+.wl-card .wl-reply {
+    color: #3B82F6 !important;
+    font-weight: 700 !important;
+}
+
+.wl-card .wl-content {
+    color: var(--color-text-normal) !important;
+    line-height: 1.8 !important; 
+    word-wrap: break-word !important; /* 修复了这里的语法 */
+}
+</style>
 <meta name="generator" content="Hexo 8.0.0"><link rel="alternate" href="/atom.xml" title="一间赛博房间" type="application/atom+xml">
 </head>
 
