@@ -231,21 +231,33 @@ hr.post-heading-small,
 .wl-meta-list,
 .wl-power-by,
 .wl-reaction-title,
-
+.wl-reaction-list, /* 新增：隐藏评论表情行，让操作栏的点赞按钮生效 */
 .wl-comment-action-reaction-btn 
 {
     display: none !important;
 }
 
-
 /* 强制应用简洁爱心图标 (点赞功能) */
 
 /* 1. 隐藏 Waline 默认的图标和表情 (确保只有计数和你的自定义爱心出现) */
-.wl-action-item[data-type="like"] .wl-action-icon, /* 默认表情图标 */
+.wl-action-item[data-type="like"] .wl-action-icon, /* 默认图标 */
 .wl-action-item[data-type="like"] .wl-action-text, /* 默认 '点赞' 文本 */
-.wl-action-item[data-type="like"] .wl-reaction-item /* Waline 默认的表情图片 */
+.wl-action-item[data-type="like"] .wl-reaction-item /* 默认表情图片 */
 {
     display: none !important;
+}
+
+/* 2. 样式化点赞按钮容器 - 这一步是关键，你之前缺少这一步 */
+.wl-comment-action .wl-action-item[data-type="like"] {
+    /* 强制点赞按钮显示，因为 Waline 默认可能会隐藏它 */
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    transition: color 0.3s ease !important;
+    color: var(--waline-text-color) !important;
+    /* 调整样式 */
+    padding: 0 10px !important;
+    font-size: 0.9em !important;
 }
 
 
@@ -262,10 +274,11 @@ hr.post-heading-small,
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
     content: '❤️' !important;
     color: #ff6b6b !important; /* 点赞后变成红色 */
-    opacity: 1; /* 点赞后完全显示 */
+    opacity: 1 !important; /* 确保覆盖 */
 }
 
-/* 5. 让计数器靠右对齐爱心 */
+/* 5. 样式化计数器 */
 .wl-comment-action .wl-action-item[data-type="like"] .wl-reaction-count {
-    margin-left: 0 !important; /* 移除默认左侧边距 */
+    margin-left: 0 !important; /* 紧贴爱心 */
+    line-height: 1.2em; /* 确保和爱心对齐 */
 }
