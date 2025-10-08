@@ -214,7 +214,11 @@ hr.post-heading-small,
 .wl-power-by, .wl-meta-list, .wl-header-actions { display: none; }
 
 /* 隐藏 Waline 默认的点赞图标（各种表情）*/
-.wl-comment-action-reaction-btn { display: none; }
+.wl-comment-action-reaction-btn { display: none !important; }
+/* 隐藏 Waline 的表情选择器输入框 */
+.wl-reaction {
+    display: none !important;
+}
 
 /* 强制应用简洁爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"]::before {
