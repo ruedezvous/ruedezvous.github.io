@@ -38,7 +38,7 @@
     --body-font-weight-normal: 300; 
     --body-line-height: 1.8; /* **优化：行间距略减，更美观** */
     --body-paragraph-margin-bottom: 1.2em; /* **优化：段间距略减，更紧凑** */
-    --body-text-indent: 2em; /* 首行缩进 */
+    --body-text-indent: 2ch; /* 首行缩进 */
 
     /* 手机端优化 */
     --mobile-font-size: 14px; 
@@ -102,10 +102,6 @@ header.masthead .subheading {
     color: var(--color-black-gray) !important;
 }
 
-/* **修复：导航栏字体颜色区分** */
-/* --------------------------------------
- * 修复：导航栏字体颜色区分
- * -------------------------------------- */
 /* 1. 强制导航链接在所有网页端状态下为白色 */
 
 /* 默认（大图上）状态下的链接和品牌标题 */
@@ -298,22 +294,4 @@ hr.post-heading-small,
 
 #waline .wl-btn:hover {
   background-color: #43A047 !important;
-}
-
-/* ==============================
-   Hexo post 正文首行缩进修正
-   仅作用于文章正文，不影响评论区
-   ============================== */
-/* 强制正文段落为块级，保证首行缩进生效 */
-.post-content {
-    display: block !important;
-}
-
-.post-content p {
-    display: block !important;       /* 关键：block 才会缩进 */
-    text-indent: 2ch !important;     /* 首行缩进 */
-    margin-top: 0 !important;
-    margin-bottom: 1.2em !important;
-    line-height: 1.8 !important;
-    font-family: 'Noto Serif SC', serif !important;
 }
