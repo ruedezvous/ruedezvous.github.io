@@ -268,14 +268,14 @@ hr.post-heading-small,
 .wl-reaction-text {
   display: inline-block !important;
   margin-left: 4px !important;
-  font-size: 0.9rem !important;
+  font-size: 0.8rem !important;
   vertical-align: middle;
 }
 
 /* 修正点赞数被截断 */
 .wl-reaction button {
   height: auto !important;
-  min-height: 36px !important;
+  min-height: 30px !important;
 }
 
 /* ==============================
