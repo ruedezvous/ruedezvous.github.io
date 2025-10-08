@@ -218,16 +218,11 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* 隐藏输入框下方的所有图标 (表情、GIF、图片、搜索图标) */
-/* 锁定 Waline 编辑器底部的容器 */
-.wl-footer-actions,
-.wl-editor-action, 
-.wl-editor-footer { 
-    display: none !important;
+/* 隐藏评论框底部的所有操作图标 (最强力隐藏) */
+.wl-comment-box .wl-editor-controls {
+    display: none !important; 
 }
-
-/* 隐藏 Waline 的通知功能、统计信息、表情标题和表情容器 */
-/* 确保隐藏评论操作栏上方的 "表情行" (.wl-reaction-list) */
+/* 隐藏 Waline 的通知、统计、表情标题和评论表情行 */
 .wl-header-actions,
 .wl-meta-list,
 .wl-power-by,
@@ -238,11 +233,6 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* 隐藏评论框底部的所有操作图标 */
-.wl-comment-box .wl-editor-controls {
-    display: none !important; 
-}
-
 /* 强制应用简洁爱心图标 (点赞功能) */
 
 /* 1. 样式化点赞按钮容器，强制显示 */
@@ -250,18 +240,19 @@ hr.post-heading-small,
     display: flex !important;
     align-items: center !important;
     cursor: pointer !important;
-    /* 移除 Waline 默认的颜色，使用 CSS 变量或自定义颜色 */
     color: var(--waline-text-color, #4a4a4a) !important; 
     padding: 0 10px 0 0 !important; 
     font-size: 0.9em !important;
     transition: all 0.3s ease;
 }
 
-/* 2. 隐藏 Waline 默认图标和文本，只保留计数 */
-.wl-action-item[data-type="like"] .wl-action-icon, /* 默认 SVG 图标容器 */
-.wl-action-item[data-type="like"] .wl-action-text, /* 默认 '点赞' 文本 */
-.wl-action-item[data-type="like"] svg, /* 默认 SVG 图标本身 */
-.wl-action-item[data-type="like"] .wl-reaction-item /* 默认表情图片 */
+/* 2. 隐藏 Waline 默认图标、文本和 SVG，只保留计数 */
+/* 这组选择器旨在覆盖 Waline 内置的所有图标和文本 */
+.wl-action-item[data-type="like"] .wl-action-icon, 
+.wl-action-item[data-type="like"] .wl-action-text, 
+.wl-action-item[data-type="like"] svg, 
+.wl-action-item[data-type="like"] span:not(.wl-reaction-count), /* 隐藏所有非计数的 span 文本 */
+.wl-action-item[data-type="like"] .wl-reaction-item
 {
     display: none !important;
 }
@@ -271,13 +262,14 @@ hr.post-heading-small,
     content: '❤️' !important; /* 强制显示爱心符号 */
     font-size: 1.2em !important;
     margin-right: 5px !important;
-    opacity: 0.5; /* 未点赞时爱心略微变灰 */
+    opacity: 0.5;
     transition: opacity 0.3s ease;
 }
 
 /* 4. 已点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
-    opacity: 1 !important; /* 点赞后完全显示 */
+    opacity: 1 !important; 
+    color: #ff6b6b !important; /* 点赞后变成红色 */
 }
 
 /* 5. 确保计数器可见并对齐 */
