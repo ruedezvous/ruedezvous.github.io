@@ -256,26 +256,44 @@ hr.post-heading-small,
   background-color: #43A047 !important;
 }
 
-/* ✅ 修复 Waline 点赞显示 */
+/* ✅ 修复 Waline 点赞显示 - 优化版 */
+
+/* 1. 确保每个点赞项（图标+数字）能弹性显示 */
 .wl-reaction-item {
+  /* 保持您的基本设置：内联弹性布局、居中、间距和字体大小 */
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   margin: 0 6px !important;
   font-size: 1.3rem !important;
+
+  /* 【关键修复】确保有足够的最小宽度，防止数字过多时被挤压 */
+  /* min-width: 35px !important;  <- 如果数字是两位数，可以考虑增加 */
 }
 
+/* 2. 优化点赞数字的样式 */
 .wl-reaction-text {
+  /* 保持您的基本设置 */
   display: inline-block !important;
   margin-left: 4px !important;
   font-size: 0.8rem !important;
   vertical-align: middle;
+
+  /* 【关键修复】防止数字太长时换行被截断 */
+  white-space: nowrap !important;
 }
 
-/* 修正点赞数被截断 */
+/* 3. 修正点赞按钮（点赞容器）的样式 */
 .wl-reaction button {
+  /* 确保按钮内容能自由撑开高度和宽度，移除 min-height 的限制 */
   height: auto !important;
-  min-height: 30px !important;
+
+  /* 【关键修复】确保按钮内容不会因为父容器的 overflow 属性而被截断 */
+  overflow: visible !important; 
+
+  /* 移除不必要的 min-height，让内容决定高度，以防样式冲突 */
+  /* min-height: 30px !important;  <- 如果不需要特定高度可以移除或改为 padding */
+  padding: 5px 8px !important; /* 使用 padding 代替 min-height，增加点击区域 */
 }
 
 /* ==============================
