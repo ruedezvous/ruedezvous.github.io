@@ -229,52 +229,53 @@ hr.post-heading-small,
     font-size: var(--waline-font-size) !important;
 }
 
-/* 隐藏表情行、通知/统计、默认点赞按钮等 */
+/* 隐藏输入框图标，表情行，通知/统计等 */
+#waline .wl-comment-box .wl-editor-controls,
 #waline .wl-header-actions,
 #waline .wl-meta-list,
 #waline .wl-power-by,
 #waline .wl-reaction-title,
 #waline .wl-reaction-list,
 #waline .wl-comment-action-reaction-btn 
-{ 
+{
     display: none !important;
 }
 
-/* 1. 强制显示点赞容器并样式化 */
-#waline .wl-comment-action .wl-action-item[data-type="like"] {
+
+/* ==================================================
+ * 3. 自定义爱心点赞样式 (针对手动注入的元素)
+ * ================================================== */
+
+#waline .wl-custom-like {
+    /* 容器样式 */
     display: flex !important;
     align-items: center !important;
     cursor: pointer !important;
-    color: var(--waline-text-color, #4a4a4a) !important; 
     padding: 0 10px 0 0 !important;
+    font-size: 0.9em !important;
     transition: all 0.3s ease;
+    /* 默认未点赞样式 */
+    color: var(--waline-text-color, #4a4a4a) !important;
+    opacity: 0.5;
 }
 
-/* 2. 隐藏 Waline 默认图标、文本和 SVG */
-#waline .wl-action-item[data-type="like"] .wl-action-icon, 
-#waline .wl-action-item[data-type="like"] .wl-action-text, 
-#waline .wl-action-item[data-type="like"] svg, 
-#waline .wl-action-item[data-type="like"] span:not(.wl-reaction-count) {
-    display: none !important;
+#waline .wl-custom-like:hover {
+    opacity: 1;
 }
 
-/* 3. 注入爱心图标 (未点赞状态) */
-#waline .wl-comment-action .wl-action-item[data-type="like"]::before {
-    content: '❤️' !important; 
-    font-size: 1.2em !important;
+/* 点赞后的激活状态 */
+#waline .wl-custom-like.active {
+    opacity: 1 !important;
+    color: #ff6b6b !important; /* 点赞后变成红色 */
+}
+
+/* 爱心符号样式 */
+#waline .wl-custom-like {
     margin-right: 5px !important;
-    opacity: 0.5; /* 默认半透明 */
-    transition: all 0.3s ease;
+    font-size: 1.2em !important;
 }
 
-/* 4. 已点赞状态 */
-#waline .wl-comment-action .wl-action-item[data-type="like"].active::before {
-    opacity: 1 !important; 
-    color: #ff6b6b !important;
-}
-
-/* 5. 计数器对齐 */
-#waline .wl-comment-action .wl-action-item[data-type="like"] .wl-reaction-count {
-    margin-left: 0 !important;
-    line-height: 1.2em;
+/* 计数器样式 */
+#waline .wl-custom-like .wl-like-count {
+    margin-left: 5px !important;
 }

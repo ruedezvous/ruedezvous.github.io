@@ -232,40 +232,85 @@
 
     <div id="waline" style="padding-top: 20px;"></div> 
 
-    <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.Waline && document.getElementById('waline')) {
-                 Waline.init({
-                    el: '#waline',
-                    serverURL: 'https://myblogcomments-five.vercel.app/', 
-                    login: 'enable',
-                    locale: {
-                        admin: '👑 作者'
-                    },  
-                    reaction: ['heart'], 
-                    requiredMeta: ['nick'], 
-                    meta: ['nick'], 
-                    
-                    pageview: true, 
-                    path: location.pathname,
-                    
-                    // 简化的变量定制
-                    light: {
-                        '--waline-theme-color': '#3B82F6',        // 按钮、链接颜色 (主题蓝)
-                        '--waline-active-color': '#2563EB',       // 按钮悬停色
-                        '--waline-border-color': '#ddd',          // 边框、分割线颜色
-                        '--waline-box-shadow': 'none',            // 移除阴影
-                        '--waline-avatar-radius': '5px',          // 头像圆角
-                        '--waline-bg-color': '#fff',              // 评论区背景色
-                        '--waline-font-family': "var(--chinese-font), var(--english-font), sans-serif",
-                        '--waline-font-size': '18px',
-                        '--waline-bq-color': '#f5f5f5',           // 引用背景色
-                        // 移除所有点赞相关的表情和图标，交给 CSS 处理
-                    },
-                 });
-            }
-        });
-    </script>
+ <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.Waline && document.getElementById('waline')) {
+                 const instance = Waline.init({ // 赋值给 instance
+                    el: '#waline',
+                    serverURL: 'https://myblogcomments-five.vercel.app/', 
+                    login: 'enable',
+                    locale: {
+                        admin: '👑 作者'
+                    },  
+                    reaction: false, // <<<<<<<< 禁用默认 reaction
+                    requiredMeta: ['nick'], 
+                    meta: ['nick'], 
+                    pageview: true, 
+                    path: location.pathname,
+                    // ... 其他 light 配置保持不变 ...
+                 });
+                   
+                 // =========================================================
+                 // ⭐️ 核心代码：手动注入爱心点赞按钮
+                 // =========================================================
+                 instance.on('init', ({ $el, comments }) => {
+                    const $commentWrappers = $el.querySelectorAll('.wl-item');
+                    comments.forEach((comment, index) => {
+                        const $wrapper = $commentWrappers[index];
+                        const $actions = $wrapper.querySelector('.wl-comment-actions');
+                        if ($actions) {
+                            // 1. 创建自定义点赞按钮
+                            const $likeBtn = document.createElement('a');
+                            $likeBtn.className = 'wl-action-item wl-custom-like';
+                            $likeBtn.innerHTML = '❤️ <span class="wl-like-count">0</span>'; // 初始爱心和计数
+                            $likeBtn.dataset.objectId = comment.objectId;
+
+                            // 2. 插入到操作栏的回复按钮前 (可选，根据你主题的回复按钮位置调整)
+                            const $replyBtn = $actions.querySelector('.wl-comment-action-reply');
+                            if ($replyBtn) {
+                                $actions.insertBefore($likeBtn, $replyBtn);
+                            } else {
+                                $actions.appendChild($likeBtn);
+                            }
+
+                            // 3. 绑定点赞事件 (需要 Waline 的 Like API)
+                            $likeBtn.addEventListener('click', async (e) => {
+                                // 阻止 Waline 默认行为
+                                e.preventDefault(); 
+                                
+                                // 检查是否已点赞 (根据你的 localStorage 或 cookies 逻辑)
+                                // 这里使用 Waline 的点赞 API
+                                const { likes, isLiked } = await instance.like(comment.objectId);
+                                
+                                // 更新样式和计数
+                                const $countSpan = $likeBtn.querySelector('.wl-like-count');
+                                $countSpan.textContent = likes;
+
+                                if (isLiked) {
+                                    $likeBtn.classList.add('active');
+                                } else {
+                                    $likeBtn.classList.remove('active');
+                                }
+                            });
+                            
+                            // 4. 获取初始点赞数 (Waline v3 不再暴露 likes 属性，需要单独请求)
+                            // 实际部署时，你需要通过 Waline API 端点获取每个 comment.objectId 的点赞数来初始化
+                            // 暂且使用 Waline 提供的获取 Likes API
+                            instance.getComment(comment.objectId).then(data => {
+                                const $countSpan = $likeBtn.querySelector('.wl-like-count');
+                                $countSpan.textContent = data.likes;
+                                
+                                // 检查是否已点赞 (Waline 无法在客户端直接检查，除非登录)
+                                // 为简化，我们依赖用户点击后再更新 active 状态
+                            });
+
+                        }
+                    });
+                 });
+            }
+        });
+    </script>
+
 
                 </div>
             
