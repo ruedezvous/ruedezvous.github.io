@@ -236,36 +236,24 @@
     document.addEventListener("DOMContentLoaded", () => {
       if (window.Waline && document.getElementById("waline")) {
         const waline = Waline.init({
-          el: "#waline",
-          serverURL: "https://myblogcomments-five.vercel.app/",
-          login: "disable",
-          locale: {
-            admin: "👑 作者",
-            reactionTitle: "",
-          },
-          reaction: ["heart"],
-          requiredMeta: ["nick"],
-          meta: ["nick"],
+          el: '#waline',
+          serverURL: 'https://myblogcomments-five.vercel.app/',
+          login: 'disable',       // 允许匿名评论
+          locale: { admin: '👑 作者' },
+          requiredMeta: ['nick'], // 匿名用户必须填写昵称
+          meta: ['nick'],
+          reaction: ['heart'],    // 点赞功能
           pageview: false,
-          path: location.pathname,
-
-          // 白绿基调
-          light: {
-            "--waline-theme-color": "#4CAF50",
-            "--waline-active-color": "#43A047",
-            "--waline-border-color": "#E0E0E0",
-            "--waline-bg-color": "#FFFFFF",
-            "--waline-text-color": "#333333",
-            "--waline-font-size": "16px",
-            "--waline-box-shadow": "none",
-            "--waline-avatar-radius": "50%",
-            "--waline-bq-color": "#F9FAF9",
-            "--waline-font-family":
-              "Noto Serif SC, var(--english-font), serif",
-          },
+          path: location.pathname
         });
 
-        // 注入爱心按钮
+        // 强制显示登录按钮（login=disable时默认隐藏）
+        const loginBtn = document.querySelector('.wl-header-actions');
+        if (loginBtn) {
+          loginBtn.style.display = 'flex';
+        }
+
+        // 自定义爱心点赞按钮（可选）
         const likeHTML = `
           <div class="wl-custom-like" id="wl-like-btn">
             🤍 <span class="wl-like-count">0</span>
@@ -274,21 +262,15 @@
         const commentHeader = document.querySelector(".wl-header");
         if (commentHeader) {
           commentHeader.insertAdjacentHTML("beforeend", likeHTML);
-
           const likeBtn = document.getElementById("wl-like-btn");
           likeBtn.addEventListener("click", () => {
             const countEl = likeBtn.querySelector(".wl-like-count");
             let count = parseInt(countEl.textContent);
             const isActive = likeBtn.classList.toggle("active");
-
-            // 切换符号 + 颜色
             if (isActive) {
               likeBtn.innerHTML = `❤️ <span class="wl-like-count">${count + 1}</span>`;
             } else {
-              likeBtn.innerHTML = `🤍 <span class="wl-like-count">${Math.max(
-                0,
-                count - 1
-              )}</span>`;
+              likeBtn.innerHTML = `🤍 <span class="wl-like-count">${Math.max(0,count - 1)}</span>`;
             }
           });
         }
