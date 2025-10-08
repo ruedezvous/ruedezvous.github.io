@@ -218,9 +218,6 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* ==================================================
- * 1. 强制增大字体大小
- * ================================================== */
 :root {
     /* 统一设置 Waline 基础字体大小，调整为你需要的值 (例如 18px) */
     --waline-font-size: 18px !important; 
@@ -232,24 +229,11 @@ hr.post-heading-small,
     font-size: var(--waline-font-size) !important;
 }
 
-
-/* ==================================================
- * 2. 强制隐藏不需要的元素
- * (使用 #waline ID 提高优先级，解决图标残留问题)
- * ================================================== */
-
-/* 隐藏评论输入框下方的所有操作图标 */
-#waline .wl-comment-box .wl-editor-controls {
-    display: none !important; 
-}
-
 /* 隐藏表情行、通知/统计、默认点赞按钮等 */
 #waline .wl-header-actions,
 #waline .wl-meta-list,
 #waline .wl-power-by,
 #waline .wl-reaction-title,
-#waline .wl-reaction-list,
-#waline .wl-comment-action-reaction-btn 
 {
     display: none !important;
 }
