@@ -43,7 +43,7 @@
     /* 手机端优化 */
     --mobile-font-size: 14px; 
     --mobile-line-height: 1.7; 
-    --mobile-padding: 25px; /* **优化：手机端两侧的间距** */
+    --mobile-padding: 20px; /* **优化：手机端两侧的间距** */
 }
 
 /* 应用全局样式和字重 */
@@ -104,14 +104,18 @@ header.masthead .subheading {
 
 /* **修复：导航栏字体颜色区分** */
 
-/* 1. 网页端导航栏链接 (navbar-fixed-top) - 保持白色 */
-.navbar-default .nav li a,
-.navbar-custom.is-fixed .nav li a { /* clean-blog 主题固定导航栏的链接 */
-    color: var(--color-white) !important;
+/* 1. 网页端导航栏链接 - 强制白色 */
+.navbar-default .nav > li > a, /* 默认状态（未滚动） */
+.navbar-custom.is-fixed .nav > li > a, /* 固定状态（滚动后） */
+.navbar-custom .nav > li > a /* 确保在任何状态下都是白色 */
+{ 
+    color: var(--color-white) !important; 
 }
 
 /* 2. 手机端下拉导航栏链接 (展开后的导航内容) - 保持黑灰色 */
-.navbar-collapse .nav li a {
+.navbar-collapse .nav li a,
+.navbar-default .navbar-collapse.in .nav li a
+{
     color: var(--color-nav-mobile) !important;
 }
 
