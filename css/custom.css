@@ -305,9 +305,10 @@ hr.post-heading-small,
    仅作用于文章正文，不影响评论区
    ============================== */
 .post-content p {
-    display: block !important;       /* 确保首行缩进生效 */
-    text-indent: 2em !important;     /* 首行缩进 2 个中文字符宽度 */
+    font-family: 'Noto Serif SC', serif !important;
+    display: block !important;
+    text-indent: 2ch !important;
     margin-top: 0 !important;
-    margin-bottom: 1.2em !important; /* 保持段间距一致 */
-    line-height: 1.8 !important;     /* 行高保持原来的设置 */
+    margin-bottom: 1.2em !important;
+    line-height: 1.8 !important;
 }
