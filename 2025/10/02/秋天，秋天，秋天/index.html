@@ -238,6 +238,10 @@
                  Waline.init({
                     el: '#waline',
                     serverURL: 'https://myblogcomments-five.vercel.app/', 
+                    login: 'enable',
+                    locale: {
+                        admin: '👑 作者'
+                    },  
                     reaction: ['like'], 
                     requiredMeta: ['nick'], 
                     meta: ['nick'], 
