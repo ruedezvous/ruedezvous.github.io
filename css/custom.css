@@ -1,69 +1,81 @@
 /*
  * custom.css
- * 用于 Hexo clean-blog 主题的自定义排版 - 优化阅读体验版
+ * 用于 Hexo clean-blog 主题的自定义排版 - 最终修复版 (V5)
  */
 
 /* ====================
  * 1. 全局字体定义 (Font Definitions)
  * ==================== */
 
-/*
- * 导入自定义字体
- * 假设您已将 Noto Serif SC.ttf 放在 theme/source/fonts/ 目录下
- */
+/* 字体导入（保持不变）*/
+/* 确保字体路径是正确的：../fonts/Noto Serif SC.ttf */
 @font-face {
     font-family: 'Noto Serif SC';
     src: url('../fonts/Noto Serif SC.ttf') format('truetype');
-    /* 尝试导入 Light 和 Regular 两个字重，以增加对比度 */
-    font-weight: 300; /* Light */
+    font-weight: 300; 
     font-style: normal;
 }
 @font-face {
     font-family: 'Noto Serif SC';
     src: url('../fonts/Noto Serif SC.ttf') format('truetype');
-    font-weight: 400; /* Regular */
+    font-weight: 400; 
     font-style: normal;
 }
-
 
 /* 定义CSS变量 */
 :root {
-    /* 字体设置 */
     --chinese-font: 'Noto Serif SC', serif;
     --english-font: serif; 
 
     /* 颜色设置 */
     --color-white: #ffffff;
-    --color-black-gray: #333333; /* 标题黑灰色 */
-    --color-text-normal: #404040; /* 默认正文颜色：比标题略浅，阅读更舒适 */
-    --color-text-strong: #202020; /* 加粗文本颜色：更深，与普通文本对比明显 */
+    --color-nav-mobile: #555555; /* **新增：手机导航栏下拉字体颜色** */
+    --color-black-gray: #333333; 
+    --color-text-normal: #404040; 
+    --color-text-strong: #202020; 
 
     /* 正文排版 */
-    --body-font-size: 14.5px; /* **字号再缩小一点，优化阅读** */
-    --body-font-weight-normal: 300; /* **默认字重 Light** */
-    --body-line-height: 1.85; /* 行间距略微调整，保持舒适 */
-    --body-paragraph-margin-bottom: 1.4em; /* 段后距 */
-    --body-text-indent: 2em; /* **首行缩进 2em** */
+    --body-font-size: 14.5px; 
+    --body-font-weight-normal: 300; 
+    --body-line-height: 1.85; 
+    --body-paragraph-margin-bottom: 1.4em; 
+    --body-text-indent: 2em; 
+
+    /* 手机端字号优化 */
+    --mobile-font-size: 14px; /* **新增：手机端字号进一步缩小** */
+    --mobile-line-height: 1.6; /* 手机端行间距略减 */
 }
 
-/* 应用正文字体和默认字重/颜色 */
+/* 应用全局样式 */
 body {
     font-family: var(--chinese-font), var(--english-font);
     color: var(--color-text-normal);
     font-weight: var(--body-font-weight-normal);
 }
 
-/* 确保正文中的主要元素使用目标字体和 Light 字重 */
-p, li, blockquote {
-    font-family: var(--chinese-font), var(--english-font);
-    font-weight: var(--body-font-weight-normal);
-    color: var(--color-text-normal);
+/* 加强目标字体应用 */
+p, li, blockquote,
+.container-fluid, /* **加强目标字体优先级，应用于更广范围** */
+.container.post-container {
+    font-family: var(--chinese-font), var(--english-font) !important;
+    font-weight: var(--body-font-weight-normal) !important;
+    color: var(--color-text-normal) !important;
 }
 
-/* **加粗字体（strong/b）样式：字重和颜色加深，形成明显对比** */
 strong, b {
-    font-weight: 700; /* Bold */
-    color: var(--color-text-strong); /* 颜色加深 */
+    font-weight: 700; 
+    color: var(--color-text-strong); 
+}
+
+/* 列表圆点修复（保持不变）*/
+ul, ol {
+    list-style-type: none; 
+}
+.post-content ul {
+    list-style-type: disc; 
+}
+.post-content ol {
+    list-style-type: decimal;
 }
 
 
@@ -71,7 +83,7 @@ strong, b {
  * 2. 首页 (Index/List Pages) 和导航栏样式
  * ==================== */
 
-/* 重置导航栏和头部标题字体：使用主题默认的 Sans-serif 字体栈 */
+/* 标题字体重置（保持不变）*/
 .navbar a,
 header.masthead h1,
 header.masthead .subheading,
@@ -80,19 +92,30 @@ header.masthead .subheading,
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
 }
 
-/* 颜色设置（与之前相同） */
+/* 颜色设置（保持不变）*/
 .navbar a {
     color: var(--color-white) !important;
 }
-
 header.masthead h1,
 header.masthead .subheading {
     color: var(--color-white) !important;
 }
-
 .post-preview .post-title,
 .post-preview .post-subtitle {
     color: var(--color-black-gray) !important;
+}
+
+/* 修复：分割线颜色优化（保持不变）*/
+hr.small,
+hr.post-heading-small,
+.post-preview hr {
+    border-color: #dddddd; 
+}
+
+/* **修复：手机端下拉导航栏字体颜色** */
+.navbar-custom .nav li a,
+.navbar-default .nav li a {
+    color: var(--color-nav-mobile) !important; /* **应用黑灰色，确保在浅色背景下可见** */
 }
 
 
@@ -102,29 +125,24 @@ header.masthead .subheading {
 
 .container.post-container .post-content,
 .container.post-container .post-content p {
-    /* 正文排版 */
-    text-align: justify; /* 两端对齐 */
-    font-size: var(--body-font-size); /* 字号 14.5px */
-    line-height: var(--body-line-height); /* 行间距 1.85 */
-    margin-bottom: var(--body-paragraph-margin-bottom); /* 段后距 */
+    text-align: justify; 
+    font-size: var(--body-font-size); 
+    line-height: var(--body-line-height); 
+    margin-bottom: var(--body-paragraph-margin-bottom); 
 }
 
-/* **首行缩进** - 仅针对段落（p）元素 */
+/* **修复：加强首行缩进优先级（网页端和手机端）** */
 .container.post-container .post-content p {
-    text-indent: var(--body-text-indent) !important; /* 首行缩进 2em */
+    /* 针对所有文章内容中的段落，使用!important确保首行缩进生效 */
+    text-indent: var(--body-text-indent) !important; 
 }
 
-/* 修正正文排版对列表、引用等的影响 */
+/* 确保列表、引用等不缩进的规则仍然存在 */
 .container.post-container .post-content ul p,
 .container.post-container .post-content ol p,
 .container.post-container .post-content blockquote p,
 .container.post-container .post-content pre p {
-    text-indent: 0;
-}
-.container.post-container .post-content ul,
-.container.post-container .post-content ol,
-.container.post-container .post-content blockquote {
-    text-align: left;
+    text-indent: 0 !important; 
 }
 
 
@@ -132,27 +150,25 @@ header.masthead .subheading {
  * 4. 响应式布局 (Responsive/Mobile Layout)
  * ==================== */
 
-/* **移动端也做相应调整** */
 @media (max-width: 768px) {
-    /* 增加容器的内边距，防止贴边 */
+    /* 修复：强制在移动端使用目标字体和字重 */
+    body, p, li, blockquote,
+    .container-fluid,
+    .container.post-container {
+        font-family: var(--chinese-font), var(--english-font) !important; 
+        font-weight: var(--body-font-weight-normal) !important;
+    }
+
+    /* 增加容器的内边距，防止贴边（保持不变） */
     .container {
         padding-left: 15px;
         padding-right: 15px;
     }
 
-    body, p, li, blockquote {
-        font-family: var(--chinese-font), var(--english-font) !important; 
-    }
-
-    /* 移动端字号略微放大，弥补屏幕小的问题，但仍保持轻盈的字重 */
+    /* **修复：手机端字号和行间距调整** */
     .container.post-container .post-content,
     .container.post-container .post-content p {
-        font-size: 15px; /* 移动端调整到 15px */
+        font-size: var(--mobile-font-size) !important; /* **使用 14px** */
+        line-height: var(--mobile-line-height) !important; /* **使用 1.6** */
     }
-
-    /* 在手机上，适当减小行间距和段后距，以提高阅读体验 */
-    :root {
-        --body-line-height: 1.7; 
-        --body-paragraph-margin-bottom: 1.0em;
-    }
-}
+}CSS
