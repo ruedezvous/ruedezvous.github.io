@@ -106,35 +106,39 @@ header.masthead .subheading {
 /* --------------------------------------
  * 修复：导航栏字体颜色区分
  * -------------------------------------- */
+/* 1. 强制导航链接在所有网页端状态下为白色 */
 
-/* 1. 网页端导航栏链接 - 强制白色 */
-
-/* 确保在页面顶部（非固定透明状态）时，链接颜色为白色 */
-.navbar-custom .nav > li > a, 
-.navbar-default .nav > li > a,
-.navbar-custom.is-fixed .nav > li > a,
-.navbar-default .navbar-brand,
+/* 默认（大图上）状态下的链接和品牌标题 */
+.navbar-default.navbar-custom .nav > li > a,
+.navbar-default.navbar-custom .navbar-brand,
+.navbar-custom .nav > li > a,
 .navbar-custom .navbar-brand {
-    /* 强制设置为白色 */
+    color: var(--color-white) !important;
+}
+
+/* 滚动后固定状态（fixed）下的链接和品牌标题 */
+/* 注意：如果滚动后导航背景变浅，这里的颜色也应该是白色，导致看不见。
+   如果发生这种情况，请将这里的 color: var(--color-white) 改为 color: #333333 */
+.navbar-custom.is-fixed .nav > li > a,
+.navbar-default.is-fixed .navbar-brand {
     color: var(--color-white) !important; 
 }
 
-/* 2. 网页端导航栏颜色 (滚动后 fixed 状态) */
-/* 当导航栏滚动并变为固定状态（通常背景为白色/灰色）时，导航字体也应该是白色。
-   注意：如果你的主题在滚动后导航背景变为白色/浅色，且你仍想保持导航字体为白色，
-   用户将无法看到导航。通常滚动后字体应该变为黑灰色。
-   **如果滚动后导航背景变浅，请将这里的 color: var(--color-white) 改为 color: #333333**
-*/
-.navbar-custom.is-fixed .nav > li > a {
-    color: var(--color-white) !important; /* 保持你要求的白色 */
-}
 
+/* 2. 手机端下拉导航栏链接 (展开后的导航内容) - 保持黑灰色 */
 
-/* 3. 手机端下拉导航栏链接 (展开后的导航内容) - 保持黑灰色 */
-/* 这里的优先级更高，确保在移动端展开后，字体变为黑灰色 */
+/* 确保手机端下拉菜单中的链接颜色不被上面的白色规则覆盖 */
 .navbar-collapse .nav li a,
 .navbar-default .navbar-collapse.in .nav li a {
-    color: var(--color-nav-mobile) !important;
+    color: var(--color-nav-mobile) !important; /* 使用定义的黑灰色 */
+}
+
+/* 3. 手机端 Brand/Title (当菜单展开时) */
+/* 手机端下拉菜单展开时，顶部的 Brand 标题应该与下拉链接颜色一致 */
+@media (max-width: 767px) {
+    .navbar-default .navbar-brand {
+        color: var(--color-nav-mobile) !important;
+    }
 }
 
 /* 修复：分割线颜色优化（保持不变）*/
