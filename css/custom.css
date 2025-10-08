@@ -298,7 +298,7 @@ hr.post-heading-small,
 
 /* 隐藏 Waline 默认的点赞图标（各种表情）*/
 .wl-comment-action-reaction-btn {
-    display: none;
+    display: none !important;
 }
 
 /* 新增一个点赞图标的容器 */
@@ -307,29 +307,29 @@ hr.post-heading-small,
     align-items: center; /* 垂直居中 */
     cursor: pointer;
     color: var(--color-text-light); /* 默认图标颜色 */
-    transition: color 0.3s ease;
+    transition: color 0.3s ease !important;
 }
 
 /* 未点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"]::before {
-    content: '❤️'; /* 使用简洁的爱心表情符号 */
+    content: '❤️' !important; /* 使用简洁的爱心表情符号 */
     font-size: 1.2em; /* 调整图标大小 */
-    margin-right: 5px;
+    margin-right: 5px !important;
 }
 
 /* 已点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
-    content: '❤️'; /* 保持爱心符号 */
-    color: #ff6b6b; /* 点赞后变成红色 */
+    content: '❤️' !important; /* 保持爱心符号 */
+    color: #ff6b6b !important; /* 点赞后变成红色 */
 }
 
 /* 点赞数字的样式 */
 .wl-comment-action .wl-action-item[data-type="like"] .wl-count {
     color: var(--color-text-light); /* 默认计数颜色 */
-    font-size: 0.9em;
+    font-size: 0.9em !important;
 }
 .wl-comment-action .wl-action-item[data-type="like"].active .wl-count {
-    color: #ff6b6b; /* 点赞后计数颜色也变红 */
+    color: #ff6b6b !important; /* 点赞后计数颜色也变红 */
 }
 
 
@@ -344,32 +344,32 @@ hr.post-heading-small,
     border-radius: var(--border-radius-base);
     margin-bottom: 15px;
     padding: 15px;
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 /* 评论用户名和日期 */
 .wl-card .wl-nick {
     color: var(--color-brand-primary); /* 用户名使用主题色 */
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold) !important;
 }
 .wl-card .wl-time {
     color: var(--color-text-light);
-    font-size: 0.85em;
+    font-size: 0.85em !important;
 }
 
 /* 评论回复按钮 */
 .wl-card .wl-reply {
     color: var(--color-brand-primary);
     font-size: 0.9em;
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium) !important;
 }
 .wl-card .wl-reply:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 /* 评论内容 */
 .wl-card .wl-content {
     color: var(--color-text-normal);
     line-height: var(--line-height-base);
-    word-wrap: break-word; /* 防止长单词溢出 */
-}
+    word-wrap: break-word /* 防止长单词溢出 */
+!important; }
