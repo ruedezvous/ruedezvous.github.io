@@ -207,3 +207,24 @@ hr.post-heading-small,
     }
 }
 
+/* 结构性样式：隐藏 Waline 默认表情并显示简洁爱心 */
+
+/* 隐藏 Waline 默认的底部分割线和统计 */
+.wl-header-wrapper { border-bottom: none; }
+.wl-power-by, .wl-meta-list, .wl-header-actions { display: none; }
+
+/* 隐藏 Waline 默认的点赞图标（各种表情）*/
+.wl-comment-action-reaction-btn { display: none; }
+
+/* 强制应用简洁爱心图标 */
+.wl-comment-action .wl-action-item[data-type="like"]::before {
+    content: '❤️'; /* 使用简洁的爱心表情符号 */
+    font-size: 1.2em; 
+    margin-right: 5px;
+}
+
+/* 点赞后的红色 */
+.wl-comment-action .wl-action-item[data-type="like"].active::before,
+.wl-comment-action .wl-action-item[data-type="like"].active .wl-count {
+    color: #ff6b6b; /* 点赞后变成红色 */
+}

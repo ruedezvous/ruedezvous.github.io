@@ -66,7 +66,7 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="stylesheet" href="/css/custom.css?v=10">
+    <link rel="stylesheet" href="/css/custom.css?v=11">
  
     <!-- Custom Fonts -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -91,68 +91,7 @@
     
 <link rel="stylesheet" href="https://unpkg.com/@waline/client/dist/waline.css" />
 
-<link rel="stylesheet" href="https://unpkg.com/@waline/client/dist/waline.css" />
 
-<style type="text/css">
-
-/* 1. 覆盖 Waline 的内部 CSS 变量 (最高优先级) */
-:root, .wl-container {
-    /* 字体 */
-    --waline-font-family: var(--chinese-font), var(--english-font), sans-serif !important;
-    --waline-font-size: 16px !important; 
-
-    /* 颜色/背景/边框 - 继承自您的博客调性 */
-    --waline-theme-color: #3B82F6 !important; /* 强调色/按钮/链接色 */
-    --waline-active-color: #2563EB !important; /* 按钮悬停色 */
-    --waline-color: var(--color-text-normal) !important; /* 评论正文颜色 */
-    --waline-bg-color: var(--color-white) !important; /* 评论区背景色 */
-    --waline-bg-color-light: #f5f5f5 !important; /* 轻微区分的背景色 */
-    --waline-border-color: #ddd !important; /* 边框颜色 */
-    --waline-box-shadow: none !important; /* 移除阴影 */
-    --waline-avatar-radius: 8px !important; /* 头像轻微圆角 */
-    --waline-border: 1px solid #ddd !important; /* 评论卡片边框 */
-}
-
-/* 2. 结构和图标定制 (使用 Class 选择器进行结构修改) */
-
-/* 隐藏不必要的元素 */
-.wl-power-by, /* Powered By Waline */
-.wl-meta-list, /* 隐藏 Waline 的访问统计 */
-.wl-header-actions, /* 隐藏 Waline 的通知功能 */
-.wl-comment-action-reaction-btn /* 隐藏默认表情图标 */
-{
-    display: none !important;
-}
-
-/* 强制应用简洁爱心图标 */
-.wl-comment-action .wl-action-item[data-type="like"] {
-    display: flex !important;
-    align-items: center !important;
-    cursor: pointer !important;
-}
-
-/* 爱心图标和点赞后的颜色 */
-.wl-comment-action .wl-action-item[data-type="like"]::before {
-    content: '❤️' !important;
-    font-size: 1.2em !important; 
-    margin-right: 5px !important;
-    color: var(--waline-color) !important; /* 默认颜色 */
-}
-
-/* 点赞后的红色 */
-.wl-comment-action .wl-action-item[data-type="like"].active::before,
-.wl-comment-action .wl-action-item[data-type="like"].active .wl-count {
-    color: #ff6b6b !important; /* 点赞后变成红色 */
-}
-
-/* 评论按钮样式 (使用 Waline 变量生效) */
-.wl-btn-send {
-    font-weight: 700 !important;
-    border-radius: 5px !important;
-    padding: 8px 15px !important;
-}
-
-</style>
 <meta name="generator" content="Hexo 8.0.0"><link rel="alternate" href="/atom.xml" title="一间赛博房间" type="application/atom+xml">
 </head>
 
@@ -295,19 +234,45 @@
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', () => {
-            // 确保 waline 容器存在，并且 Waline 对象已加载
             if (window.Waline && document.getElementById('waline')) {
                  Waline.init({
                     el: '#waline',
                     serverURL: 'https://myblogcomments-five.vercel.app/', 
                     reaction: true, 
                     pageview: true, 
-                    path: location.pathname
-                });
+                    path: location.pathname,
+                    
+                    // 🚨 终极修复：直接注入 CSS 变量，强制 Waline 使用新样式 🚨
+                    
+                    // 所有定制化样式都放在这里
+                    meta: ['nick', 'mail', 'link'], // 强制显示用户昵称、邮箱和链接输入框
+                    
+                    // 强制覆盖 Waline 内部 CSS 变量，实现简洁化和调性匹配
+                    // 这些变量会直接覆盖 Waline CDN 默认样式
+                    
+                    // 简化的变量定制
+                    light: {
+                        '--waline-theme-color': '#3B82F6',        // 按钮、链接颜色 (主题蓝)
+                        '--waline-active-color': '#2563EB',       // 按钮悬停色
+                        '--waline-border-color': '#ddd',          // 边框、分割线颜色
+                        '--waline-box-shadow': 'none',            // 移除阴影
+                        '--waline-avatar-radius': '5px',          // 头像圆角
+                        '--waline-bg-color': '#fff',              // 评论区背景色
+                        '--waline-font-family': "var(--chinese-font), var(--english-font), sans-serif",
+                        '--waline-font-size': '16px',
+                        '--waline-bq-color': '#f5f5f5',           // 引用背景色
+                        // 移除所有点赞相关的表情和图标，交给 CSS 处理
+                    },
+                    
+                    // 默认图标定制（非必须，但可以确保点赞图标简化）
+                    // 默认情况下，Waline 会加载它自己的表情，这里我们不加载它不想要的表情
+                    reaction: [
+                        '❤️' // 只保留爱心点赞
+                    ]
+                 });
             }
         });
     </script>
-
 
                 </div>
             
