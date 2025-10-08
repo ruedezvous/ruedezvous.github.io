@@ -256,6 +256,12 @@ hr.post-heading-small,
   background-color: #43A047 !important;
 }
 
+/* 针对 Waline 点赞按钮容器增加最小宽度 */
+.wl-reaction-item {
+    min-width: 40px !important; /* 增加最小宽度 */
+    padding: 0 5px !important; /* 增加左右内边距 */
+}
+
 /* ==============================
    Hexo Post 正文优化
    ============================== */
