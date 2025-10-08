@@ -8,16 +8,16 @@
  * ==================== */
 
 /* 字体导入（保持不变）*/
-/* 确保字体路径是正确的：../fonts/Noto Serif SC.ttf */
+/* 确保字体路径是正确的： */
 @font-face {
     font-family: 'Noto Serif SC';
-    src: url('../fonts/Noto Serif SC.ttf') format('truetype');
+    src: url('../fonts/NotoSerifSC-Regular.ttf') format('truetype');
     font-weight: 300; 
     font-style: normal;
 }
 @font-face {
     font-family: 'Noto Serif SC';
-    src: url('../fonts/Noto Serif SC.ttf') format('truetype');
+    src: url('../fonts/NotoSerifSC-Regular.ttf') format('truetype');
     font-weight: 400; 
     font-style: normal;
 }
@@ -171,4 +171,4 @@ hr.post-heading-small,
         font-size: var(--mobile-font-size) !important; /* **使用 14px** */
         line-height: var(--mobile-line-height) !important; /* **使用 1.6** */
     }
-}CSS
+}
