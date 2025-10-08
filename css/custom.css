@@ -219,9 +219,10 @@ hr.post-heading-small,
 }
 
 /* 隐藏输入框下方的所有图标 (表情、GIF、图片、搜索图标) */
-/* 隐藏整个 Footer 区域，如果图标在此区域 */
+/* 锁定 Waline 编辑器底部的容器 */
 .wl-footer-actions,
-.wl-editor-footer { /* 新增此规则，强制隐藏整个底部区域 */
+.wl-editor-action, 
+.wl-editor-footer { 
     display: none !important;
 }
 
@@ -231,12 +232,29 @@ hr.post-heading-small,
 .wl-power-by,
 .wl-reaction-title,
 .wl-reaction,
-.wl-comment-action-reaction-btn /* 隐藏默认点赞/表情按钮 */
+.wl-comment-action-reaction-btn 
 {
     display: none !important;
 }
 
-/* 强制应用简洁爱心图标 (点赞功能) */
+/* --------------------------------------------------
+ * 重点：隐藏 Waline 默认的 👍 图标，只显示爱心伪元素
+ * -------------------------------------------------- */
+
+/* 隐藏 Waline 默认加载的图标元素（通常是 SVG 或 <i> 标签）*/
+.wl-comment-action .wl-action-item[data-type="like"] svg,
+.wl-comment-action .wl-action-item[data-type="like"] i,
+.wl-comment-action .wl-action-item[data-type="like"] span:not(.wl-count) { 
+    display: none !important;
+}
+
+/* 确保点赞数字不被隐藏 */
+.wl-comment-action .wl-action-item[data-type="like"] .wl-count {
+    display: initial !important; 
+}
+
+
+/* 强制应用简洁爱心图标 (点赞功能) - 您的代码保持不变 */
 .wl-comment-action .wl-action-item[data-type="like"] {
     display: flex !important; 
     align-items: center !important; 
