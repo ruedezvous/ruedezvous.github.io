@@ -299,3 +299,15 @@ hr.post-heading-small,
 #waline .wl-btn:hover {
   background-color: #43A047 !important;
 }
+
+/* ==============================
+   Hexo post 正文首行缩进修正
+   仅作用于文章正文，不影响评论区
+   ============================== */
+.post-content p {
+    display: block !important;       /* 确保首行缩进生效 */
+    text-indent: 2em !important;     /* 首行缩进 2 个中文字符宽度 */
+    margin-top: 0 !important;
+    margin-bottom: 1.2em !important; /* 保持段间距一致 */
+    line-height: 1.8 !important;     /* 行高保持原来的设置 */
+}
