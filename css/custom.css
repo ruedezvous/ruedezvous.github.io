@@ -311,7 +311,7 @@ hr.post-heading-small,
 
 .post-content p {
     display: block !important;       /* 关键：block 才会缩进 */
-    text-indent: 2em !important;     /* 首行缩进 */
+    text-indent: 2ch !important;     /* 首行缩进 */
     margin-top: 0 !important;
     margin-bottom: 1.2em !important;
     line-height: 1.8 !important;
