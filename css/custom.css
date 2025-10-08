@@ -220,7 +220,7 @@ hr.post-heading-small,
 
 :root {
     /* 统一设置 Waline 基础字体大小，调整为你需要的值 (例如 18px) */
-    --waline-font-size: 18px !important; 
+    --waline-font-size: 17px !important; 
 }
 
 /* 确保评论内容和昵称等应用新字体大小 */
@@ -233,11 +233,10 @@ hr.post-heading-small,
 #waline .wl-header-actions,
 #waline .wl-meta-list,
 #waline .wl-power-by,
-#waline .wl-reaction-title,
-{
+#waline .wl-reaction-title
+{ 
     display: none !important;
 }
-
 /* ==================================================
  * 3. 简洁爱心点赞功能
  * ================================================== */
