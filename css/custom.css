@@ -213,10 +213,18 @@ hr.post-heading-small,
 .wl-header-wrapper { border-bottom: none; }
 .wl-power-by, .wl-meta-list, .wl-header-actions { display: none; }
 
-/* 隐藏 Waline 默认的点赞图标（各种表情）*/
-.wl-comment-action-reaction-btn { display: none !important; }
-/* 隐藏 Waline 的表情选择器输入框 */
+/* 隐藏 Waline 默认的 Reaction 标题 */
+.wl-reaction-title {
+    display: none !important;
+}
+
+/* 隐藏整个 Reaction 区域的容器（双重保险）*/
 .wl-reaction {
+    display: none !important;
+}
+
+/* 隐藏 Waline 默认的点赞图标（各种表情）*/
+.wl-comment-action-reaction-btn {
     display: none !important;
 }
 
