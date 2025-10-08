@@ -207,15 +207,13 @@ hr.post-heading-small,
     }
 }
 
-/* 结构性样式：隐藏 Waline 默认表情并显示简洁爱心 */
+/* ==================================================
+ * Waline 极简模式：最终 CSS 修正 (只保留昵称和评论框)
+ * ================================================== */
 
-/* 隐藏 Waline 默认的底部分割线和统计 */
-.wl-header-wrapper { border-bottom: none; }
-.wl-power-by, .wl-meta-list, .wl-header-actions { display: none; }
-
-/* 隐藏邮箱和网址输入框 (强制覆盖 Waline 默认样式) */
-.wl-meta-input:nth-child(2), /* 邮箱 */
-.wl-meta-input:nth-child(3)  /* 网址 */
+/* 强制隐藏邮箱和网址输入框 (最强选择器) */
+.wl-meta-list .wl-meta-input:nth-child(2), /* 邮箱 */
+.wl-meta-list .wl-meta-input:nth-child(3)  /* 网址 */
 {
     display: none !important;
 }
@@ -225,28 +223,34 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* 隐藏 Waline 默认的点赞图标（各种表情）*/
-/* 确保这个选择器能匹配到默认的 Waline 点赞图标 */
-.wl-comment-action-reaction-btn {
-    display: none !important;
-}
-
-/* 隐藏 Waline 的 Reaction 区域标题 */
+/* 隐藏 Waline 的通知功能、统计信息、表情标题和表情容器 */
+.wl-header-actions,
+.wl-meta-list,
+.wl-power-by,
 .wl-reaction-title,
-.wl-reaction {
+.wl-reaction,
+.wl-comment-action-reaction-btn /* 隐藏默认点赞/表情按钮 */
+{
     display: none !important;
 }
 
-/* **重点**：强制用伪元素显示爱心图标 */
+/* 强制应用简洁爱心图标 (点赞功能) */
+.wl-comment-action .wl-action-item[data-type="like"] {
+    display: flex !important; 
+    align-items: center !important; 
+    cursor: pointer !important;
+    transition: color 0.3s ease !important;
+}
+
 /* 未点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"]::before {
-    content: '❤️' !important; /* 使用简洁的爱心表情符号 */
+    content: '❤️' !important; /* 强制显示爱心符号 */
     font-size: 1.2em !important; 
     margin-right: 5px !important;
 }
 
 /* 已点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
-    content: '❤️' !important; /* 保持爱心符号 */
+    content: '❤️' !important;
     color: #ff6b6b !important; /* 点赞后变成红色 */
 }

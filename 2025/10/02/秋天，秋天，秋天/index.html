@@ -66,7 +66,7 @@
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="stylesheet" href="/css/custom.css?v=15">
+    <link rel="stylesheet" href="/css/custom.css?v=16">
  
     <!-- Custom Fonts -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -238,25 +238,12 @@
                  Waline.init({
                     el: '#waline',
                     serverURL: 'https://myblogcomments-five.vercel.app/', 
-                        // 🚨 关键修复 1：将 reaction 设置为 false，彻底禁用表情包功能和容器
                     reaction: false, 
-    
-    // 🚨 关键修复 2：控制输入字段，只保留 'nick' (昵称)
-    // Waline 默认必须保留 'nick'、'mail'、'link'。
-    // 我们通过设置 requiredMeta 为空数组 [] 来实现只保留 'nick'
                     requiredMeta: ['nick'], 
                     meta: ['nick'], 
                     
                     pageview: true, 
                     path: location.pathname,
-                    
-                    // 🚨 终极修复：直接注入 CSS 变量，强制 Waline 使用新样式 🚨
-                    
-                    // 所有定制化样式都放在这里
-                    meta: ['nick', 'mail', 'link'], // 强制显示用户昵称、邮箱和链接输入框
-                    
-                    // 强制覆盖 Waline 内部 CSS 变量，实现简洁化和调性匹配
-                    // 这些变量会直接覆盖 Waline CDN 默认样式
                     
                     // 简化的变量定制
                     light: {
@@ -271,12 +258,6 @@
                         '--waline-bq-color': '#f5f5f5',           // 引用背景色
                         // 移除所有点赞相关的表情和图标，交给 CSS 处理
                     },
-                    
-                    // 默认图标定制（非必须，但可以确保点赞图标简化）
-                    // 默认情况下，Waline 会加载它自己的表情，这里我们不加载它不想要的表情
-                    reaction: [
-                        '❤️' // 只保留爱心点赞
-                    ]
                  });
             }
         });
