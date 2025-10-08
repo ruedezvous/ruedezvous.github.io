@@ -267,35 +267,44 @@ hr.post-heading-small,
   margin: 0 6px !important;
   font-size: 1.3rem !important;
 
-  /* 【关键修复】确保有足够的最小宽度，防止数字过多时被挤压 */
-  /* min-width: 35px !important;  <- 如果数字是两位数，可以考虑增加 */
+/* ✅ Waline 点赞修复：宽度和高度优化 */
+
+/* 1. 确保点赞项容器能根据内容自动调整宽度 */
+.wl-reaction-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 6px !important;
+  font-size: 1.3rem !important;
+  
+  /* 确保宽度由内容决定，不设置固定宽度或 min-width */
+  width: auto !important; 
 }
 
-/* 2. 优化点赞数字的样式 */
+/* 2. 核心修复：确保数字不换行且有足够的水平空间 */
 .wl-reaction-text {
-  /* 保持您的基本设置 */
   display: inline-block !important;
   margin-left: 4px !important;
   font-size: 0.8rem !important;
   vertical-align: middle;
 
-  /* 【关键修复】防止数字太长时换行被截断 */
+  /* 【核心修复】防止数字太长时换行被截断 (这是宽度截断最常见的原因) */
   white-space: nowrap !important;
 }
 
-/* 3. 修正点赞按钮（点赞容器）的样式 */
+/* 3. 移除按钮对高度的限制，让其自适应 */
 .wl-reaction button {
-  /* 确保按钮内容能自由撑开高度和宽度，移除 min-height 的限制 */
+  /* 移除您之前设置的 min-height 和 height，让内容决定高度 */
   height: auto !important;
+  min-height: unset !important; /* 取消最小高度限制 */
 
-  /* 【关键修复】确保按钮内容不会因为父容器的 overflow 属性而被截断 */
+  /* 推荐：使用 padding 增加点击区域，同时不限制内容高度 */
+  padding: 5px 8px !important; 
+
+  /* 确保按钮内容溢出时是可见的，而不是被截断 */
   overflow: visible !important; 
-
-  /* 移除不必要的 min-height，让内容决定高度，以防样式冲突 */
-  /* min-height: 30px !important;  <- 如果不需要特定高度可以移除或改为 padding */
-  padding: 5px 8px !important; /* 使用 padding 代替 min-height，增加点击区域 */
 }
-
+}
 /* ==============================
    Hexo Post 正文优化
    ============================== */
