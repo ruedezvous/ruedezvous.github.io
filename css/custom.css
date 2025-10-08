@@ -43,7 +43,7 @@
     /* 手机端优化 */
     --mobile-font-size: 14px; 
     --mobile-line-height: 1.7; 
-    --mobile-padding: 18px; /* **优化：手机端两侧的间距** */
+    --mobile-padding: 20px; /* **优化：手机端两侧的间距** */
 }
 
 /* 应用全局样式和字重 */
@@ -161,8 +161,6 @@ hr.post-heading-small,
     margin-bottom: var(--body-paragraph-margin-bottom); /* 优化段间距 */
 }
 
-/* **修复：终极首行缩进** */
-/* 使用更强大的选择器，并对所有相关元素强制应用 */
 .post-content p, 
 .container.post-container .post-content p {
     text-indent: var(--body-text-indent) !important; 
