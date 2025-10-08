@@ -219,46 +219,47 @@ hr.post-heading-small,
 }
 
 /* ==================================================
- * 1. 强制增大字体大小 (覆盖 Waline 默认变量)
+ * 1. 强制增大字体大小
  * ================================================== */
 :root {
     /* 统一设置 Waline 基础字体大小，调整为你需要的值 (例如 18px) */
     --waline-font-size: 18px !important; 
 }
 
-/* 确保评论内容和昵称等使用新字体大小 */
-.wl-content,
-.wl-nick {
+/* 确保评论内容和昵称等应用新字体大小 */
+#waline .wl-content,
+#waline .wl-nick {
     font-size: var(--waline-font-size) !important;
 }
 
 
 /* ==================================================
- * 2. 隐藏不需要的元素 (输入框图标)
+ * 2. 强制隐藏不需要的元素
+ * (使用 #waline ID 提高优先级，解决图标残留问题)
  * ================================================== */
 
-/* 隐藏评论输入框下方的所有操作图标 (最强力隐藏) */
-.wl-comment-box .wl-editor-controls {
+/* 隐藏评论输入框下方的所有操作图标 */
+#waline .wl-comment-box .wl-editor-controls {
     display: none !important; 
 }
 
-/* 隐藏其他无用元素：评论表情行、通知/统计、默认点赞按钮等 */
-.wl-header-actions,
-.wl-meta-list,
-.wl-power-by,
-.wl-reaction-title,
-.wl-reaction-list,
-.wl-comment-action-reaction-btn 
+/* 隐藏表情行、通知/统计、默认点赞按钮等 */
+#waline .wl-header-actions,
+#waline .wl-meta-list,
+#waline .wl-power-by,
+#waline .wl-reaction-title,
+#waline .wl-reaction-list,
+#waline .wl-comment-action-reaction-btn 
 {
     display: none !important;
 }
 
 /* ==================================================
- * 3. 简洁爱心点赞功能 (强制覆盖 Waline v3.6.0)
+ * 3. 简洁爱心点赞功能
  * ================================================== */
 
 /* 1. 强制显示点赞容器并样式化 */
-.wl-comment-action .wl-action-item[data-type="like"] {
+#waline .wl-comment-action .wl-action-item[data-type="like"] {
     display: flex !important;
     align-items: center !important;
     cursor: pointer !important;
@@ -267,16 +268,16 @@ hr.post-heading-small,
     transition: all 0.3s ease;
 }
 
-/* 2. 隐藏 Waline 默认图标、文本和 SVG (确保只留下计数) */
-.wl-action-item[data-type="like"] .wl-action-icon, 
-.wl-action-item[data-type="like"] .wl-action-text, 
-.wl-action-item[data-type="like"] svg, 
-.wl-action-item[data-type="like"] span:not(.wl-reaction-count) {
+/* 2. 隐藏 Waline 默认图标、文本和 SVG */
+#waline .wl-action-item[data-type="like"] .wl-action-icon, 
+#waline .wl-action-item[data-type="like"] .wl-action-text, 
+#waline .wl-action-item[data-type="like"] svg, 
+#waline .wl-action-item[data-type="like"] span:not(.wl-reaction-count) {
     display: none !important;
 }
 
 /* 3. 注入爱心图标 (未点赞状态) */
-.wl-comment-action .wl-action-item[data-type="like"]::before {
+#waline .wl-comment-action .wl-action-item[data-type="like"]::before {
     content: '❤️' !important; 
     font-size: 1.2em !important;
     margin-right: 5px !important;
@@ -285,13 +286,13 @@ hr.post-heading-small,
 }
 
 /* 4. 已点赞状态 */
-.wl-comment-action .wl-action-item[data-type="like"].active::before {
+#waline .wl-comment-action .wl-action-item[data-type="like"].active::before {
     opacity: 1 !important; 
     color: #ff6b6b !important;
 }
 
 /* 5. 计数器对齐 */
-.wl-comment-action .wl-action-item[data-type="like"] .wl-reaction-count {
+#waline .wl-comment-action .wl-action-item[data-type="like"] .wl-reaction-count {
     margin-left: 0 !important;
     line-height: 1.2em;
 }
