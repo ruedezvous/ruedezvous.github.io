@@ -309,7 +309,7 @@ hr.post-heading-small,
 
 .container.post-container .post-content p {
     display: block !important;             /* 确保块级元素 */
-    text-indent: 2em !important;           /* 首行缩进 */
+    text-indent: 2ch !important;           /* 首行缩进 */
     margin-top: 0 !important;
     margin-bottom: 1.5em !important;       /* 段间距稍大，更美观 */
 }
