@@ -228,15 +228,16 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* 强制应用简洁爱心图标 */
+/* **重点**：强制用伪元素显示爱心图标 */
+/* 未点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"]::before {
-    content: '❤️'; /* 使用简洁的爱心表情符号 */
-    font-size: 1.2em; 
-    margin-right: 5px;
+    content: '❤️' !important; /* 使用简洁的爱心表情符号 */
+    font-size: 1.2em !important; 
+    margin-right: 5px !important;
 }
 
-/* 点赞后的红色 */
-.wl-comment-action .wl-action-item[data-type="like"].active::before,
-.wl-comment-action .wl-action-item[data-type="like"].active .wl-count {
-    color: #ff6b6b; /* 点赞后变成红色 */
+/* 已点赞状态的爱心图标 */
+.wl-comment-action .wl-action-item[data-type="like"].active::before {
+    content: '❤️' !important; /* 保持爱心符号 */
+    color: #ff6b6b !important; /* 点赞后变成红色 */
 }
