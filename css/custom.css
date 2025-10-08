@@ -305,9 +305,9 @@ hr.post-heading-small,
    仅作用于文章正文，不影响评论区
    ============================== */
 .post-content p {
-    font-family: 'Noto Serif SC', serif !important;
+    font-family: 'Noto Serif SC', serif !important; /* 中文字体 */
     display: block !important;
-    text-indent: 2ch !important;
+    text-indent: 2em !important; 
     margin-top: 0 !important;
     margin-bottom: 1.2em !important;
     line-height: 1.8 !important;
