@@ -43,7 +43,7 @@
     /* 手机端优化 */
     --mobile-font-size: 14px; 
     --mobile-line-height: 1.7; 
-    --mobile-padding: 20px; /* **优化：手机端两侧的间距** */
+    --mobile-padding: 18px; /* **优化：手机端两侧的间距** */
 }
 
 /* 应用全局样式和字重 */
