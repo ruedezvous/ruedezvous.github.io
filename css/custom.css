@@ -228,8 +228,7 @@ hr.post-heading-small,
 #waline .wl-header-actions,
 #waline .wl-meta-list,
 #waline .wl-power-by,
-#waline .wl-reaction-title,
-#waline .wl-reaction-list {
+#waline .wl-reaction-title {
   display: none !important;
 }
 
