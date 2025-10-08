@@ -232,8 +232,6 @@
     <div id="waline" style="padding-top: 20px;"></div>
 
     <script type="text/javascript">
-        // 确保 Waline JS 库已在 layout.ejs 中引入
-        if (typeof Waline !== 'undefined') {
             Waline.init({
                 el: '#waline',
                 // 🚨 替换为您 Vercel 部署成功后获得的域名 🚨
@@ -243,7 +241,6 @@
                 pageview: true, // 启用阅读量统计
                 path: location.pathname
             });
-        }
     </script>
 
 
