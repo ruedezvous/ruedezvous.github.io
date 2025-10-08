@@ -218,8 +218,10 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* 隐藏输入框下方的表情、GIF、图片、搜索图标 */
-.wl-footer-actions {
+/* 隐藏输入框下方的所有图标 (表情、GIF、图片、搜索图标) */
+/* 隐藏整个 Footer 区域，如果图标在此区域 */
+.wl-footer-actions,
+.wl-editor-footer { /* 新增此规则，强制隐藏整个底部区域 */
     display: none !important;
 }
 
@@ -253,4 +255,9 @@ hr.post-heading-small,
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
     content: '❤️' !important;
     color: #ff6b6b !important; /* 点赞后变成红色 */
+}
+
+/* 确保评论操作条出现 */
+.wl-comment-action {
+    display: flex !important; /* 确保它总是 Flex 布局，即使没有默认内容 */
 }
