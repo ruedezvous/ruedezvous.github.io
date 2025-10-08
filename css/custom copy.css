@@ -208,168 +208,74 @@ hr.post-heading-small,
 }
 
 /* ==================================================
- * 1. Waline 评论区整体简洁化与调性调整
+ * Waline 极简模式：最终 CSS 修正 (只保留昵称和评论框)
  * ================================================== */
 
-/* 强制 Waline 评论区使用博客的自定义字体 */
-.wl-container,
-.wl-container button,
-.wl-container input,
-.wl-container textarea,
-.wl-container .wl-emoji-popup {
-    font-family: var(--chinese-font), var(--english-font), sans-serif !important;
-    font-size: 16px; /* 调整评论区的字号，保持与正文一致 */
-    line-height: var(--line-height-base); /* 继承博客基础行高 */
-    color: var(--color-text-normal); /* 继承正文颜色 */
-}
-
-/* 统一评论区背景色 */
-.wl-container {
-    background-color: var(--color-background-primary); /* 与博客主体背景色一致 */
-    border-radius: var(--border-radius-base); /* 圆角处理 */
-    padding: 20px 0; /* 内部留白 */
-    margin-top: 30px; /* 顶部与文章内容间隔 */
-}
-
-/* 隐藏 Waline 默认的底部分割线 */
-.wl-header-wrapper {
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 10px !important;
-}
-
-/* 隐藏底部的 Powered By Waline 标识 */
-.wl-power-by {
-    display: none;
-}
-
-/* 隐藏 Waline 的访问统计 */
-.wl-meta-list {
+/* 强制隐藏邮箱和网址输入框 (最强选择器) */
+.wl-meta-list .wl-meta-input:nth-child(2), /* 邮箱 */
+.wl-meta-list .wl-meta-input:nth-child(3)  /* 网址 */
+{
     display: none !important;
 }
 
-/* 隐藏 Waline 的通知功能 (只保留评论功能) */
-.wl-header-actions {
+:root {
+    /* 统一设置 Waline 基础字体大小，调整为你需要的值 (例如 18px) */
+    --waline-font-size: 16px !important; 
+}
+
+/* 确保评论内容和昵称等应用新字体大小 */
+#waline .wl-content,
+#waline .wl-nick {
+    font-size: var(--waline-font-size) !important;
+}
+
+/* 隐藏输入框图标，表情行，通知/统计等 */
+#waline .wl-comment-box .wl-editor-controls,
+#waline .wl-header-actions,
+#waline .wl-meta-list,
+#waline .wl-power-by,
+#waline .wl-reaction-title,
+#waline .wl-reaction-list,
+#waline .wl-comment-action-reaction-btn 
+{
     display: none !important;
 }
+
 
 /* ==================================================
- * 2. 评论输入框和按钮美化
+ * 3. 自定义爱心点赞样式 (针对手动注入的元素)
  * ================================================== */
 
-/* 评论输入框的边框和背景 */
-.wl-editor {
-    border: 1px solid var(--color-border-light); /* 柔和边框 */
-    border-radius: var(--border-radius-base); /* 继承基础圆角 */
-    padding: 10px;
-    background-color: var(--color-background-input); /* 浅色输入框背景 */
-    box-shadow: none; /* 移除阴影 */
+#waline .wl-custom-like {
+    /* 容器样式 */
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    padding: 0 10px 0 0 !important;
+    font-size: 0.9em !important;
+    transition: all 0.3s ease;
+    /* 默认未点赞样式 */
+    color: var(--waline-text-color, #4a4a4a) !important;
+    opacity: 0.5;
 }
 
-/* 评论按钮样式 (以博客的强调色为主) */
-.wl-btn-send {
-    background-color: var(--color-brand-primary); /* 博客的主题色 */
-    color: var(--color-white); /* 按钮文字白色 */
-    border: none;
-    border-radius: var(--border-radius-base);
-    padding: 8px 15px;
-    transition: background-color 0.3s ease;
-    font-weight: var(--font-weight-bold); /* 按钮文字加粗 */
-    cursor: pointer;
+#waline .wl-custom-like:hover {
+    opacity: 1;
 }
 
-/* 鼠标悬停时的按钮颜色 */
-.wl-btn-send:hover {
-    background-color: var(--color-brand-secondary); /* 稍深的按钮颜色 */
-}
-
-/* 表情和图片上传按钮的样式 */
-.wl-header .wl-icon-btn {
-    color: var(--color-text-light); /* 柔和的图标颜色 */
-    transition: color 0.3s ease;
-}
-.wl-header .wl-icon-btn:hover {
-    color: var(--color-brand-primary); /* 鼠标悬停时显示主题色 */
-}
-
-/* ==================================================
- * 3. 简化点赞图标 (核心)
- * ================================================== */
-
-/* 隐藏 Waline 默认的点赞图标（各种表情）*/
-.wl-comment-action-reaction-btn {
-    display: none !important;
-}
-
-/* 新增一个点赞图标的容器 */
-.wl-comment-action .wl-action-item[data-type="like"] {
-    display: flex; /* 确保Flexbox布局 */
-    align-items: center; /* 垂直居中 */
-    cursor: pointer;
-    color: var(--color-text-light); /* 默认图标颜色 */
-    transition: color 0.3s ease !important;
-}
-
-/* 未点赞状态的爱心图标 */
-.wl-comment-action .wl-action-item[data-type="like"]::before {
-    content: '❤️' !important; /* 使用简洁的爱心表情符号 */
-    font-size: 1.2em; /* 调整图标大小 */
-    margin-right: 5px !important;
-}
-
-/* 已点赞状态的爱心图标 */
-.wl-comment-action .wl-action-item[data-type="like"].active::before {
-    content: '❤️' !important; /* 保持爱心符号 */
+/* 点赞后的激活状态 */
+#waline .wl-custom-like.active {
+    opacity: 1 !important;
     color: #ff6b6b !important; /* 点赞后变成红色 */
 }
 
-/* 点赞数字的样式 */
-.wl-comment-action .wl-action-item[data-type="like"] .wl-count {
-    color: var(--color-text-light); /* 默认计数颜色 */
-    font-size: 0.9em !important;
-}
-.wl-comment-action .wl-action-item[data-type="like"].active .wl-count {
-    color: #ff6b6b !important; /* 点赞后计数颜色也变红 */
+/* 爱心符号样式 */
+#waline .wl-custom-like {
+    margin-right: 5px !important;
+    font-size: 1.2em !important;
 }
 
-
-/* ==================================================
- * 4. 评论列表样式
- * ================================================== */
-
-/* 评论卡片背景和边框 */
-.wl-card {
-    background-color: var(--color-background-primary);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--border-radius-base);
-    margin-bottom: 15px;
-    padding: 15px;
-    box-shadow: none !important;
+/* 计数器样式 */
+#waline .wl-custom-like .wl-like-count {
+    margin-left: 5px !important;
 }
-
-/* 评论用户名和日期 */
-.wl-card .wl-nick {
-    color: var(--color-brand-primary); /* 用户名使用主题色 */
-    font-weight: var(--font-weight-bold) !important;
-}
-.wl-card .wl-time {
-    color: var(--color-text-light);
-    font-size: 0.85em !important;
-}
-
-/* 评论回复按钮 */
-.wl-card .wl-reply {
-    color: var(--color-brand-primary);
-    font-size: 0.9em;
-    font-weight: var(--font-weight-medium) !important;
-}
-.wl-card .wl-reply:hover {
-    text-decoration: underline !important;
-}
-
-/* 评论内容 */
-.wl-card .wl-content {
-    color: var(--color-text-normal);
-    line-height: var(--line-height-base);
-    word-wrap: break-word /* 防止长单词溢出 */
-!important; }

@@ -211,71 +211,88 @@ hr.post-heading-small,
  * Waline 极简模式：最终 CSS 修正 (只保留昵称和评论框)
  * ================================================== */
 
-/* 强制隐藏邮箱和网址输入框 (最强选择器) */
-.wl-meta-list .wl-meta-input:nth-child(2), /* 邮箱 */
-.wl-meta-list .wl-meta-input:nth-child(3)  /* 网址 */
-{
-    display: none !important;
+/* 隐藏邮箱、网址输入框 */
+.wl-meta-list .wl-meta-input:nth-child(2),
+.wl-meta-list .wl-meta-input:nth-child(3) {
+  display: none !important;
 }
 
+/* 统一字体大小与字体族 */
 :root {
-    /* 统一设置 Waline 基础字体大小，调整为你需要的值 (例如 18px) */
-    --waline-font-size: 16px !important; 
+  --waline-font-size: 16px !important;
 }
 
-/* 确保评论内容和昵称等应用新字体大小 */
 #waline .wl-content,
 #waline .wl-nick {
-    font-size: var(--waline-font-size) !important;
+  font-size: var(--waline-font-size) !important;
+  font-family: "Noto Serif SC", var(--english-font), serif !important;
 }
 
-/* 隐藏输入框图标，表情行，通知/统计等 */
+/* 移除所有多余元素：表情、工具栏、统计信息 */
 #waline .wl-comment-box .wl-editor-controls,
 #waline .wl-header-actions,
 #waline .wl-meta-list,
 #waline .wl-power-by,
 #waline .wl-reaction-title,
-#waline .wl-reaction-list,
-#waline .wl-comment-action-reaction-btn 
-{
-    display: none !important;
+#waline .wl-reaction-list {
+  display: none !important;
 }
 
-
-/* ==================================================
- * 3. 自定义爱心点赞样式 (针对手动注入的元素)
- * ================================================== */
+/* ==============================
+   自定义爱心点赞按钮
+   ============================== */
 
 #waline .wl-custom-like {
-    /* 容器样式 */
-    display: flex !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    padding: 0 10px 0 0 !important;
-    font-size: 0.9em !important;
-    transition: all 0.3s ease;
-    /* 默认未点赞样式 */
-    color: var(--waline-text-color, #4a4a4a) !important;
-    opacity: 0.5;
+  display: inline-flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  margin-left: 10px;
+  padding: 2px 6px;
+  font-size: 1em;
+  border-radius: 6px;
+  color: #666;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
 #waline .wl-custom-like:hover {
-    opacity: 1;
+  opacity: 1;
+  transform: scale(1.1);
 }
 
-/* 点赞后的激活状态 */
 #waline .wl-custom-like.active {
-    opacity: 1 !important;
-    color: #ff6b6b !important; /* 点赞后变成红色 */
+  color: #ff6b6b !important;
+  opacity: 1 !important;
+  transform: scale(1.2);
 }
 
-/* 爱心符号样式 */
-#waline .wl-custom-like {
-    margin-right: 5px !important;
-    font-size: 1.2em !important;
-}
-
-/* 计数器样式 */
 #waline .wl-custom-like .wl-like-count {
-    margin-left: 5px !important;
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+
+/* ==============================
+   评论区整体优化
+   ============================== */
+
+#waline {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#waline .wl-editor {
+  border-radius: 10px !important;
+  border: 1px solid #ddd !important;
+}
+
+#waline .wl-btn {
+  border-radius: 8px !important;
+  background-color: #ff6b6b !important;
+  color: white !important;
+  border: none !important;
+}
+
+#waline .wl-btn:hover {
+  background-color: #ff4b4b !important;
 }

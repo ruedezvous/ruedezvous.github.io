@@ -227,90 +227,68 @@
             
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     
-    <hr />
-    <h3>Comments:</h3>
+  <hr />
+  <h3>Comments:</h3>
 
-    <div id="waline" style="padding-top: 20px;"></div> 
+  <div id="waline" style="padding-top: 20px;"></div>
 
- <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.Waline && document.getElementById('waline')) {
-                 const instance = Waline.init({ // 赋值给 instance
-                    el: '#waline',
-                    serverURL: 'https://myblogcomments-five.vercel.app/', 
-                    login: 'enable',
-                    locale: {
-                        admin: '👑 作者'
-                    },  
-                    reaction: false, // <<<<<<<< 禁用默认 reaction
-                    requiredMeta: ['nick'], 
-                    meta: ['nick'], 
-                    pageview: true, 
-                    path: location.pathname,
-                    // ... 其他 light 配置保持不变 ...
-                 });
-                   
-                 // =========================================================
-                 // ⭐️ 核心代码：手动注入爱心点赞按钮
-                 // =========================================================
-                 instance.on('init', ({ $el, comments }) => {
-                    const $commentWrappers = $el.querySelectorAll('.wl-item');
-                    comments.forEach((comment, index) => {
-                        const $wrapper = $commentWrappers[index];
-                        const $actions = $wrapper.querySelector('.wl-comment-actions');
-                        if ($actions) {
-                            // 1. 创建自定义点赞按钮
-                            const $likeBtn = document.createElement('a');
-                            $likeBtn.className = 'wl-action-item wl-custom-like';
-                            $likeBtn.innerHTML = '❤️ <span class="wl-like-count">0</span>'; // 初始爱心和计数
-                            $likeBtn.dataset.objectId = comment.objectId;
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.Waline && document.getElementById("waline")) {
+        const waline = Waline.init({
+          el: "#waline",
+          serverURL: "https://myblogcomments-five.vercel.app/",
+          login: "enable",
+          locale: {
+            admin: "👑 作者",
+            reactionTitle: "", // 去掉反应标题
+          },
+          reaction: ["heart"], // 保留一个“爱心”反应
+          requiredMeta: ["nick"],
+          meta: ["nick"],
+          pageview: false, // 可选：关闭浏览量统计
+          path: location.pathname,
 
-                            // 2. 插入到操作栏的回复按钮前 (可选，根据你主题的回复按钮位置调整)
-                            const $replyBtn = $actions.querySelector('.wl-comment-action-reply');
-                            if ($replyBtn) {
-                                $actions.insertBefore($likeBtn, $replyBtn);
-                            } else {
-                                $actions.appendChild($likeBtn);
-                            }
+          // 极简视觉主题
+          light: {
+            "--waline-theme-color": "#ff6b6b",
+            "--waline-active-color": "#ff4b4b",
+            "--waline-border-color": "#eee",
+            "--waline-bg-color": "#fff",
+            "--waline-font-size": "16px",
+            "--waline-box-shadow": "none",
+            "--waline-avatar-radius": "50%",
+            "--waline-bq-color": "#fafafa",
+            "--waline-font-family":
+              "Noto Serif SC, var(--english-font), serif",
+          },
+        });
 
-                            // 3. 绑定点赞事件 (需要 Waline 的 Like API)
-                            $likeBtn.addEventListener('click', async (e) => {
-                                // 阻止 Waline 默认行为
-                                e.preventDefault(); 
-                                
-                                // 检查是否已点赞 (根据你的 localStorage 或 cookies 逻辑)
-                                // 这里使用 Waline 的点赞 API
-                                const { likes, isLiked } = await instance.like(comment.objectId);
-                                
-                                // 更新样式和计数
-                                const $countSpan = $likeBtn.querySelector('.wl-like-count');
-                                $countSpan.textContent = likes;
+        // 手动注入一个简洁的爱心按钮（替代复杂反应区）
+        const likeHTML = `
+          <div class="wl-custom-like" id="wl-like-btn">
+            ❤️ <span class="wl-like-count">0</span>
+          </div>
+        `;
+        const commentHeader = document.querySelector(".wl-header");
+        if (commentHeader) {
+          commentHeader.insertAdjacentHTML("beforeend", likeHTML);
 
-                                if (isLiked) {
-                                    $likeBtn.classList.add('active');
-                                } else {
-                                    $likeBtn.classList.remove('active');
-                                }
-                            });
-                            
-                            // 4. 获取初始点赞数 (Waline v3 不再暴露 likes 属性，需要单独请求)
-                            // 实际部署时，你需要通过 Waline API 端点获取每个 comment.objectId 的点赞数来初始化
-                            // 暂且使用 Waline 提供的获取 Likes API
-                            instance.getComment(comment.objectId).then(data => {
-                                const $countSpan = $likeBtn.querySelector('.wl-like-count');
-                                $countSpan.textContent = data.likes;
-                                
-                                // 检查是否已点赞 (Waline 无法在客户端直接检查，除非登录)
-                                // 为简化，我们依赖用户点击后再更新 active 状态
-                            });
-
-                        }
-                    });
-                 });
-            }
-        });
-    </script>
-
+          const likeBtn = document.getElementById("wl-like-btn");
+          likeBtn.addEventListener("click", () => {
+            likeBtn.classList.toggle("active");
+            const countEl = likeBtn.querySelector(".wl-like-count");
+            let count = parseInt(countEl.textContent);
+            if (likeBtn.classList.contains("active")) {
+              countEl.textContent = count + 1;
+            } else {
+              countEl.textContent = Math.max(0, count - 1);
+            }
+          });
+        }
+      }
+    });
+  </script>
 
                 </div>
             
