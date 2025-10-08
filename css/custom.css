@@ -295,3 +295,35 @@ hr.post-heading-small,
 #waline .wl-btn:hover {
   background-color: #43A047 !important;
 }
+
+/* ==============================
+   Hexo Post 正文优化
+   ============================== */
+.container.post-container .post-content {
+    text-align: justify !important;        /* 两端对齐 */
+    font-size: 16px !important;            /* 可根据需要调整 */
+    line-height: 1.9 !important;           /* 稍微加大行高 */
+    font-family: 'Noto Serif SC', serif !important;
+    color: #333333 !important;             /* 普通字体颜色 */
+}
+
+.container.post-container .post-content p {
+    display: block !important;             /* 确保块级元素 */
+    text-indent: 2em !important;           /* 首行缩进 */
+    margin-top: 0 !important;
+    margin-bottom: 1.5em !important;       /* 段间距稍大，更美观 */
+}
+
+.container.post-container .post-content strong,
+.container.post-container .post-content b {
+    font-weight: 700 !important;           /* 加粗字体 */
+    color: #111111 !important;             /* 加强与正文的对比 */
+}
+
+/* 列表和引用保持排版，首行不缩进 */
+.post-content ul p,
+.post-content ol p,
+.post-content blockquote p,
+.post-content pre p {
+    text-indent: 0 !important;
+}
