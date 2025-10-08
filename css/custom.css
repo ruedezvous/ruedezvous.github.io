@@ -36,13 +36,13 @@
     /* 正文排版优化：行间距与段间距 */
     --body-font-size: 14.5px; 
     --body-font-weight-normal: 300; 
-    --body-line-height: 1.75; /* **优化：行间距略减，更美观** */
+    --body-line-height: 1.8; /* **优化：行间距略减，更美观** */
     --body-paragraph-margin-bottom: 1.2em; /* **优化：段间距略减，更紧凑** */
     --body-text-indent: 2em; /* 首行缩进 */
 
     /* 手机端优化 */
     --mobile-font-size: 14px; 
-    --mobile-line-height: 1.6; 
+    --mobile-line-height: 1.7; 
     --mobile-padding: 25px; /* **优化：手机端两侧的间距** */
 }
 
