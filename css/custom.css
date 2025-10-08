@@ -307,13 +307,6 @@ hr.post-heading-small,
     color: #333333 !important;             /* 普通字体颜色 */
 }
 
-.container.post-container .post-content p {
-    display: block !important;             /* 确保块级元素 */
-    text-indent: 2ch !important;           /* 首行缩进 */
-    margin-top: 0 !important;
-    margin-bottom: 1.5em !important;       /* 段间距稍大，更美观 */
-}
-
 .container.post-container .post-content strong,
 .container.post-container .post-content b {
     font-weight: 700 !important;           /* 加粗字体 */
@@ -326,4 +319,21 @@ hr.post-heading-small,
 .post-content blockquote p,
 .post-content pre p {
     text-indent: 0 !important;
+}
+
+/* ==============================
+   解决 Bootstrap 栅格导致首行缩进失效
+   ============================== */
+.col-lg-8.col-lg-offset-2,
+.col-md-10.col-md-offset-1 {
+    display: block !important;  /* 恢复块级布局 */
+}
+
+.post-content p {
+    display: block !important;   /* 块级段落 */
+    text-indent: 2em !important; /* 首行缩进 */
+    margin-top: 0 !important;
+    margin-bottom: 1.5em !important;
+    line-height: 1.9 !important;
+    font-family: 'Noto Serif SC', serif !important;
 }
