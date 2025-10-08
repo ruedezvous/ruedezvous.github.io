@@ -237,45 +237,35 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* /* --------------------------------------------------
- * 重点：隐藏 Waline 默认的 👍 图标，只显示爱心伪元素
- * -------------------------------------------------- */
 
-/* 隐藏 Waline 默认加载的图标元素（通常是 SVG 或 <i> 标签）*/
-.wl-comment-action .wl-action-item[data-type="like"] svg,
-.wl-comment-action .wl-action-item[data-type="like"] i,
-.wl-comment-action .wl-action-item[data-type="like"] span:not(.wl-count) { 
+/* 强制应用简洁爱心图标 (点赞功能) */
+
+/* 1. 隐藏 Waline 默认的图标和表情 (确保只有计数和你的自定义爱心出现) */
+.wl-action-item[data-type="like"] .wl-action-icon, /* 默认表情图标 */
+.wl-action-item[data-type="like"] .wl-action-text, /* 默认 '点赞' 文本 */
+.wl-action-item[data-type="like"] .wl-reaction-item /* Waline 默认的表情图片 */
+{
     display: none !important;
-} */
-
-/* 确保点赞数字不被隐藏 */
-.wl-comment-action .wl-action-item[data-type="like"] .wl-count {
-    display: initial !important; 
 }
 
 
-/* 强制应用简洁爱心图标 (点赞功能) - 您的代码保持不变 */
-.wl-comment-action .wl-action-item[data-type="like"] {
-    display: flex !important; 
-    align-items: center !important; 
-    cursor: pointer !important;
-    transition: color 0.3s ease !important;
-}
-
-/* 未点赞状态的爱心图标 */
+/* 3. 未点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"]::before {
     content: '❤️' !important; /* 强制显示爱心符号 */
-    font-size: 1.2em !important; 
+    font-size: 1.2em !important;
     margin-right: 5px !important;
+    opacity: 0.5; /* 未点赞时爱心略微变灰 */
+    transition: opacity 0.3s ease;
 }
 
-/* 已点赞状态的爱心图标 */
+/* 4. 已点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
     content: '❤️' !important;
     color: #ff6b6b !important; /* 点赞后变成红色 */
+    opacity: 1; /* 点赞后完全显示 */
 }
 
-/* 确保评论操作条出现 */
-.wl-comment-action {
-    display: flex !important; /* 确保它总是 Flex 布局，即使没有默认内容 */
+/* 5. 让计数器靠右对齐爱心 */
+.wl-comment-action .wl-action-item[data-type="like"] .wl-reaction-count {
+    margin-left: 0 !important; /* 移除默认左侧边距 */
 }
