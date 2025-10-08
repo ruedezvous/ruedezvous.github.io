@@ -268,45 +268,17 @@
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
       if (window.Waline && document.getElementById("waline")) {
-        const waline = Waline.init({
+        Waline.init({
           el: '#waline',
           serverURL: 'https://myblogcomments-five.vercel.app/',
-        //   login: 'force',       
           locale: { admin: '👑 作者' },
-          requiredMeta: ['nick'], // 匿名用户必须填写昵称
+          requiredMeta: ['nick'],  // 匿名用户必须填写昵称
           meta: ['nick'],
-          reaction: ['heart'],    // 点赞功能
-          pageview: false,
-          path: location.pathname
+          reaction: ['heart'],     // 官方点赞系统
+          pageview: true,          // 允许页面浏览量记录
+          path: location.pathname, // 每篇文章独立统计
+          login: 'enable',         // 启用登录（支持匿名）
         });
-
-        // 强制显示登录按钮（login=disable时默认隐藏）
-        const loginBtn = document.querySelector('.wl-header-actions');
-        if (loginBtn) {
-          loginBtn.style.display = 'flex';
-        }
-
-        // 自定义爱心点赞按钮（可选）
-        const likeHTML = `
-          <div class="wl-custom-like" id="wl-like-btn">
-            🤍 <span class="wl-like-count">0</span>
-          </div>
-        `;
-        const commentHeader = document.querySelector(".wl-header");
-        if (commentHeader) {
-          commentHeader.insertAdjacentHTML("beforeend", likeHTML);
-          const likeBtn = document.getElementById("wl-like-btn");
-          likeBtn.addEventListener("click", () => {
-            const countEl = likeBtn.querySelector(".wl-like-count");
-            let count = parseInt(countEl.textContent);
-            const isActive = likeBtn.classList.toggle("active");
-            if (isActive) {
-              likeBtn.innerHTML = `❤️ <span class="wl-like-count">${count + 1}</span>`;
-            } else {
-              likeBtn.innerHTML = `🤍 <span class="wl-like-count">${Math.max(0,count - 1)}</span>`;
-            }
-          });
-        }
       }
     });
   </script>

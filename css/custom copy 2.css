@@ -38,12 +38,12 @@
     --body-font-weight-normal: 300; 
     --body-line-height: 1.8; /* **优化：行间距略减，更美观** */
     --body-paragraph-margin-bottom: 1.2em; /* **优化：段间距略减，更紧凑** */
-    --body-text-indent: 2em; /* 首行缩进 */
+    --body-text-indent: 2ch; /* 首行缩进 */
 
     /* 手机端优化 */
     --mobile-font-size: 14px; 
     --mobile-line-height: 1.7; 
-    --mobile-padding: 18px; /* **优化：手机端两侧的间距** */
+    --mobile-padding: 20px; /* **优化：手机端两侧的间距** */
 }
 
 /* 应用全局样式和字重 */
@@ -102,10 +102,6 @@ header.masthead .subheading {
     color: var(--color-black-gray) !important;
 }
 
-/* **修复：导航栏字体颜色区分** */
-/* --------------------------------------
- * 修复：导航栏字体颜色区分
- * -------------------------------------- */
 /* 1. 强制导航链接在所有网页端状态下为白色 */
 
 /* 默认（大图上）状态下的链接和品牌标题 */
@@ -161,8 +157,6 @@ hr.post-heading-small,
     margin-bottom: var(--body-paragraph-margin-bottom); /* 优化段间距 */
 }
 
-/* **修复：终极首行缩进** */
-/* 使用更强大的选择器，并对所有相关元素强制应用 */
 .post-content p, 
 .container.post-container .post-content p {
     text-indent: var(--body-text-indent) !important; 
@@ -211,71 +205,134 @@ hr.post-heading-small,
  * Waline 极简模式：最终 CSS 修正 (只保留昵称和评论框)
  * ================================================== */
 
-/* 强制隐藏邮箱和网址输入框 (最强选择器) */
-.wl-meta-list .wl-meta-input:nth-child(2), /* 邮箱 */
-.wl-meta-list .wl-meta-input:nth-child(3)  /* 网址 */
-{
-    display: none !important;
+/* 隐藏邮箱、网址输入框 */
+.wl-meta-list .wl-meta-input:nth-child(2),
+.wl-meta-list .wl-meta-input:nth-child(3) {
+  display: none !important;
 }
 
+/* 字体统一 */
 :root {
-    /* 统一设置 Waline 基础字体大小，调整为你需要的值 (例如 18px) */
-    --waline-font-size: 16px !important; 
+  --waline-font-size: 16px !important;
 }
 
-/* 确保评论内容和昵称等应用新字体大小 */
 #waline .wl-content,
 #waline .wl-nick {
-    font-size: var(--waline-font-size) !important;
+  font-size: var(--waline-font-size) !important;
+  font-family: "Noto Serif SC", var(--english-font), serif !important;
+  color: #333 !important;
 }
 
-/* 隐藏输入框图标，表情行，通知/统计等 */
+/* 隐藏多余 UI 元素 */
 #waline .wl-comment-box .wl-editor-controls,
 #waline .wl-header-actions,
 #waline .wl-meta-list,
 #waline .wl-power-by,
-#waline .wl-reaction-title,
-#waline .wl-reaction-list,
-#waline .wl-comment-action-reaction-btn 
-{
-    display: none !important;
+#waline .wl-reaction-title {
+  display: none !important;
 }
 
-
-/* ==================================================
- * 3. 自定义爱心点赞样式 (针对手动注入的元素)
- * ================================================== */
-
+/* ==============================
+   爱心按钮：灰 -> 红
+   ============================== */
 #waline .wl-custom-like {
-    /* 容器样式 */
-    display: flex !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    padding: 0 10px 0 0 !important;
-    font-size: 0.9em !important;
-    transition: all 0.3s ease;
-    /* 默认未点赞样式 */
-    color: var(--waline-text-color, #4a4a4a) !important;
-    opacity: 0.5;
+  display: inline-flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  margin-left: 10px;
+  padding: 2px 6px;
+  font-size: 1.1em;
+  border-radius: 6px;
+  color: #aaa; /* 未点时灰色 */
+  opacity: 0.8;
+  transition: all 0.25s ease;
+  user-select: none;
+  background: transparent;
 }
 
 #waline .wl-custom-like:hover {
-    opacity: 1;
+  opacity: 1;
+  transform: scale(1.05);
 }
 
-/* 点赞后的激活状态 */
+/* 点赞后变红并放大 */
 #waline .wl-custom-like.active {
-    opacity: 1 !important;
-    color: #ff6b6b !important; /* 点赞后变成红色 */
+  color: #e74c3c !important; /* 红色爱心 */
+  opacity: 1;
+  transform: scale(1.2);
 }
 
-/* 爱心符号样式 */
-#waline .wl-custom-like {
-    margin-right: 5px !important;
-    font-size: 1.2em !important;
-}
-
-/* 计数器样式 */
+/* 爱心计数 */
 #waline .wl-custom-like .wl-like-count {
-    margin-left: 5px !important;
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+
+/* ==============================
+   评论框整体风格：白绿简约
+   ============================== */
+#waline {
+  border: none !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}
+
+#waline .wl-editor {
+  border-radius: 10px !important;
+  border: 1px solid #E0E0E0 !important;
+  background-color: #FAFAFA !important;
+}
+
+#waline .wl-btn {
+  border-radius: 8px !important;
+  background-color: #4CAF50 !important;
+  color: white !important;
+  border: none !important;
+  transition: background-color 0.3s ease;
+}
+
+#waline .wl-btn:hover {
+  background-color: #43A047 !important;
+}
+
+/* ==============================
+   Hexo Post 正文优化
+   ============================== */
+.container.post-container .post-content {
+    text-align: justify !important;        /* 两端对齐 */
+    font-size: 16px !important;            /* 可根据需要调整 */
+    line-height: 1.9 !important;           /* 稍微加大行高 */
+    font-family: 'Noto Serif SC', serif !important;
+    color: #333333 !important;             /* 普通字体颜色 */
+}
+
+.container.post-container .post-content strong,
+.container.post-container .post-content b {
+    font-weight: 700 !important;           /* 加粗字体 */
+    color: #111111 !important;             /* 加强与正文的对比 */
+}
+
+/* 列表和引用保持排版，首行不缩进 */
+.post-content ul p,
+.post-content ol p,
+.post-content blockquote p,
+.post-content pre p {
+    text-indent: 0 !important;
+}
+
+/* ==============================
+   解决 Bootstrap 栅格导致首行缩进失效
+   ============================== */
+.col-lg-8.col-lg-offset-2,
+.col-md-10.col-md-offset-1 {
+    display: block !important;  /* 恢复块级布局 */
+}
+
+.post-content p {
+    display: block !important;   /* 块级段落 */
+    text-indent: 2ch !important; /* 首行缩进 */
+    margin-top: 0 !important;
+    margin-bottom: 1.5em !important;
+    line-height: 1.9 !important;
+    font-family: 'Noto Serif SC', serif !important;
 }

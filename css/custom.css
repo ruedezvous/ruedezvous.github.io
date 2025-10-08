@@ -223,49 +223,60 @@ hr.post-heading-small,
   color: #333 !important;
 }
 
-/* 隐藏多余 UI 元素 */
-#waline .wl-comment-box .wl-editor-controls,
-#waline .wl-header-actions,
-#waline .wl-meta-list,
-#waline .wl-power-by,
-#waline .wl-reaction-title {
-  display: none !important;
-}
-
 /* ==============================
    爱心按钮：灰 -> 红
    ============================== */
-#waline .wl-custom-like {
-  display: inline-flex !important;
-  align-items: center !important;
-  cursor: pointer !important;
-  margin-left: 10px;
-  padding: 2px 6px;
-  font-size: 1.1em;
-  border-radius: 6px;
-  color: #aaa; /* 未点时灰色 */
-  opacity: 0.8;
-  transition: all 0.25s ease;
-  user-select: none;
-  background: transparent;
+/* --- 美化 Waline 官方点赞 Reaction --- */
+#waline .wl-reaction-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 15px;
 }
 
-#waline .wl-custom-like:hover {
-  opacity: 1;
+#waline .wl-reaction-item:hover {
+  background: rgba(255, 100, 100, 0.15);
+  transform: translateY(-1px);
+}
+
+#waline .wl-reaction-item.active {
+  background: rgba(255, 0, 0, 0.15);
+  color: #ff4d6d;
   transform: scale(1.05);
 }
 
-/* 点赞后变红并放大 */
-#waline .wl-custom-like.active {
-  color: #e74c3c !important; /* 红色爱心 */
-  opacity: 1;
+#waline .wl-reaction-item svg {
+  display: none; /* 隐藏默认图标（太丑） */
+}
+
+/* 替换为自定义爱心符号 ❤️ */
+#waline .wl-reaction-item[data-id="heart"]::before {
+  content: "❤️";
+  font-size: 18px;
+  margin-right: 4px;
+  transition: all 0.3s ease;
+}
+
+#waline .wl-reaction-item.active[data-id="heart"]::before {
   transform: scale(1.2);
 }
 
-/* 爱心计数 */
-#waline .wl-custom-like .wl-like-count {
-  margin-left: 5px;
-  font-size: 0.9em;
+/* 数字部分更清晰 */
+#waline .wl-reaction-item-count {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+/* 隐藏无关标题 */
+#waline .wl-reaction-title {
+  display: none !important;
 }
 
 /* ==============================
