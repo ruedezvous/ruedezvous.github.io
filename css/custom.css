@@ -304,11 +304,16 @@ hr.post-heading-small,
    Hexo post 正文首行缩进修正
    仅作用于文章正文，不影响评论区
    ============================== */
-.post-content p {
-    font-family: 'Noto Serif SC', serif !important; /* 中文字体 */
+/* 强制正文段落为块级，保证首行缩进生效 */
+.post-content {
     display: block !important;
-    text-indent: 2em !important; 
+}
+
+.post-content p {
+    display: block !important;       /* 关键：block 才会缩进 */
+    text-indent: 2em !important;     /* 首行缩进 */
     margin-top: 0 !important;
     margin-bottom: 1.2em !important;
     line-height: 1.8 !important;
+    font-family: 'Noto Serif SC', serif !important;
 }
