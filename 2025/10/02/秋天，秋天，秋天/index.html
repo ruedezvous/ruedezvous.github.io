@@ -2,6 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
+<link rel="stylesheet" href="https://unpkg.com/@waline/client/dist/waline.css" />
 <head>
 
     <meta charset="utf-8"/>
@@ -93,6 +94,7 @@
 </head>
 
 
+<script type="text/javascript" src="https://unpkg.com/@waline/client/dist/waline.js"></script>
 <body>
 
     <!-- Menu -->
@@ -224,6 +226,25 @@
             
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     
+    <hr />
+    <h3>Comments:</h3>
+
+    <div id="waline" style="padding-top: 20px;"></div>
+
+    <script type="text/javascript">
+        // 确保 Waline JS 库已在 layout.ejs 中引入
+        if (typeof Waline !== 'undefined') {
+            Waline.init({
+                el: '#waline',
+                // 🚨 替换为您 Vercel 部署成功后获得的域名 🚨
+                serverURL: 'https://myblogcomments-five.vercel.app/', 
+                
+                reaction: true, // 启用点赞
+                pageview: true, // 启用阅读量统计
+                path: location.pathname
+            });
+        }
+    </script>
 
 
                 </div>
