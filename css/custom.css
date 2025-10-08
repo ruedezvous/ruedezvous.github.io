@@ -227,41 +227,46 @@ hr.post-heading-small,
 }
 
 /* 隐藏 Waline 的通知功能、统计信息、表情标题和表情容器 */
+/* 确保隐藏评论操作栏上方的 "表情行" (.wl-reaction-list) */
 .wl-header-actions,
 .wl-meta-list,
 .wl-power-by,
 .wl-reaction-title,
-.wl-reaction-list, /* 新增：隐藏评论表情行，让操作栏的点赞按钮生效 */
+.wl-reaction-list,
 .wl-comment-action-reaction-btn 
 {
     display: none !important;
 }
 
+/* 隐藏评论框底部的所有操作图标 */
+.wl-comment-box .wl-editor-controls {
+    display: none !important; 
+}
+
 /* 强制应用简洁爱心图标 (点赞功能) */
 
-/* 1. 隐藏 Waline 默认的图标和表情 (确保只有计数和你的自定义爱心出现) */
-.wl-action-item[data-type="like"] .wl-action-icon, /* 默认图标 */
+/* 1. 样式化点赞按钮容器，强制显示 */
+.wl-comment-action .wl-action-item[data-type="like"] {
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    /* 移除 Waline 默认的颜色，使用 CSS 变量或自定义颜色 */
+    color: var(--waline-text-color, #4a4a4a) !important; 
+    padding: 0 10px 0 0 !important; 
+    font-size: 0.9em !important;
+    transition: all 0.3s ease;
+}
+
+/* 2. 隐藏 Waline 默认图标和文本，只保留计数 */
+.wl-action-item[data-type="like"] .wl-action-icon, /* 默认 SVG 图标容器 */
 .wl-action-item[data-type="like"] .wl-action-text, /* 默认 '点赞' 文本 */
+.wl-action-item[data-type="like"] svg, /* 默认 SVG 图标本身 */
 .wl-action-item[data-type="like"] .wl-reaction-item /* 默认表情图片 */
 {
     display: none !important;
 }
 
-/* 2. 样式化点赞按钮容器 - 这一步是关键，你之前缺少这一步 */
-.wl-comment-action .wl-action-item[data-type="like"] {
-    /* 强制点赞按钮显示，因为 Waline 默认可能会隐藏它 */
-    display: flex !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    transition: color 0.3s ease !important;
-    color: var(--waline-text-color) !important;
-    /* 调整样式 */
-    padding: 0 10px !important;
-    font-size: 0.9em !important;
-}
-
-
-/* 3. 未点赞状态的爱心图标 */
+/* 3. 注入爱心图标 (未点赞状态) */
 .wl-comment-action .wl-action-item[data-type="like"]::before {
     content: '❤️' !important; /* 强制显示爱心符号 */
     font-size: 1.2em !important;
@@ -272,13 +277,11 @@ hr.post-heading-small,
 
 /* 4. 已点赞状态的爱心图标 */
 .wl-comment-action .wl-action-item[data-type="like"].active::before {
-    content: '❤️' !important;
-    color: #ff6b6b !important; /* 点赞后变成红色 */
-    opacity: 1 !important; /* 确保覆盖 */
+    opacity: 1 !important; /* 点赞后完全显示 */
 }
 
-/* 5. 样式化计数器 */
+/* 5. 确保计数器可见并对齐 */
 .wl-comment-action .wl-action-item[data-type="like"] .wl-reaction-count {
-    margin-left: 0 !important; /* 紧贴爱心 */
-    line-height: 1.2em; /* 确保和爱心对齐 */
+    margin-left: 0 !important;
+    line-height: 1.2em;
 }
