@@ -229,20 +229,9 @@
     <hr />
     <h3>Comments:</h3>
 
-    <div id="waline" style="padding-top: 20px;"></div>
+    <div id="waline" style="padding-top: 20px;"></div> 
 
-    <script type="text/javascript">
-            Waline.init({
-                el: '#waline',
-                // 🚨 替换为您 Vercel 部署成功后获得的域名 🚨
-                serverURL: 'https://myblogcomments-five.vercel.app/', 
-                
-                reaction: true, // 启用点赞
-                pageview: true, // 启用阅读量统计
-                path: location.pathname
-            });
-    </script>
-
+    
 
                 </div>
             
@@ -301,7 +290,21 @@
 <!-- Disqus Comments -->
 
 
+    
     <script type="text/javascript" src="https://unpkg.com/@waline/client/dist/waline.umd.js" defer></script>
+
+    <script type="text/javascript">
+        // 🚨 检查 Waline 容器是否存在再初始化，防止报错
+        if (document.getElementById('waline')) {
+            Waline.init({
+                el: '#waline',
+                serverURL: 'https://myblogcomments-five.vercel.app/', 
+                reaction: true, 
+                pageview: true, 
+                path: location.pathname
+            });
+        }
+    </script>
 
 </body>
 
