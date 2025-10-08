@@ -256,22 +256,13 @@ hr.post-heading-small,
   background-color: #43A047 !important;
 }
 
-/* ✅ 修复 Waline 点赞显示和防止截断 */
-.wl-reaction {
-  display: flex !important;
-  flex-wrap: wrap !important; /* 允许换行，防止多个按钮溢出 */
-  gap: 6px !important;        /* 按钮间距 */
-}
-
+/* ✅ 修复 Waline 点赞显示 */
 .wl-reaction-item {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin: 0 !important;
-  padding: 4px 8px !important; /* 给按钮一点水平内边距 */
+  margin: 0 6px !important;
   font-size: 1.3rem !important;
-  min-width: 50px !important;   /* 保证按钮不会太窄 */
-  white-space: nowrap !important; /* 防止文字折行 */
 }
 
 .wl-reaction-text {
@@ -279,15 +270,12 @@ hr.post-heading-small,
   margin-left: 4px !important;
   font-size: 0.9rem !important;
   vertical-align: middle;
-  overflow: visible !important;   /* 防止点赞数被隐藏 */
 }
 
-/* 保证按钮高度自适应 */
+/* 修正点赞数被截断 */
 .wl-reaction button {
   height: auto !important;
   min-height: 36px !important;
-  padding: 4px 8px !important;  /* 内边距保证文字显示完整 */
-  white-space: nowrap !important; /* 不换行 */
 }
 
 /* ==============================
