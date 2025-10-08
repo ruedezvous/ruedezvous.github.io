@@ -237,7 +237,7 @@ hr.post-heading-small,
     display: none !important;
 }
 
-/* --------------------------------------------------
+/* /* --------------------------------------------------
  * 重点：隐藏 Waline 默认的 👍 图标，只显示爱心伪元素
  * -------------------------------------------------- */
 
@@ -246,7 +246,7 @@ hr.post-heading-small,
 .wl-comment-action .wl-action-item[data-type="like"] i,
 .wl-comment-action .wl-action-item[data-type="like"] span:not(.wl-count) { 
     display: none !important;
-}
+} */
 
 /* 确保点赞数字不被隐藏 */
 .wl-comment-action .wl-action-item[data-type="like"] .wl-count {
