@@ -228,6 +228,7 @@ hr.post-heading-small,
   display: none !important;
 }
 
+
 /* ==============================
    评论框整体风格：白绿简约
    ============================== */
@@ -253,6 +254,28 @@ hr.post-heading-small,
 
 #waline .wl-btn:hover {
   background-color: #43A047 !important;
+}
+
+/* ✅ 修复 Waline 点赞显示 */
+.wl-reaction-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 6px !important;
+  font-size: 1.3rem !important;
+}
+
+.wl-reaction-text {
+  display: inline-block !important;
+  margin-left: 4px !important;
+  font-size: 0.9rem !important;
+  vertical-align: middle;
+}
+
+/* 修正点赞数被截断 */
+.wl-reaction button {
+  height: auto !important;
+  min-height: 36px !important;
 }
 
 /* ==============================
