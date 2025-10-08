@@ -170,6 +170,18 @@
     </div>
 </header>
 
+<style>
+@media (max-width: 768px) {
+    /* 强制在移动端使用目标字体 */
+    body, p, li, blockquote,
+    .container-fluid,
+    .container.post-container {
+        font-family: var(--chinese-font), var(--english-font) !important; 
+        font-weight: var(--body-font-weight-normal) !important;
+    }
+}
+</style>
+
 <!-- Post Content -->
 <article>
     <div class="container">
