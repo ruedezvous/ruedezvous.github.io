@@ -217,7 +217,7 @@ hr.post-heading-small,
   display: none !important;
 }
 
-/* 统一字体大小与字体族 */
+/* 字体统一 */
 :root {
   --waline-font-size: 16px !important;
 }
@@ -226,9 +226,10 @@ hr.post-heading-small,
 #waline .wl-nick {
   font-size: var(--waline-font-size) !important;
   font-family: "Noto Serif SC", var(--english-font), serif !important;
+  color: #333 !important;
 }
 
-/* 移除所有多余元素：表情、工具栏、统计信息 */
+/* 隐藏多余 UI 元素 */
 #waline .wl-comment-box .wl-editor-controls,
 #waline .wl-header-actions,
 #waline .wl-meta-list,
@@ -239,60 +240,64 @@ hr.post-heading-small,
 }
 
 /* ==============================
-   自定义爱心点赞按钮
+   爱心按钮：灰 -> 红
    ============================== */
-
 #waline .wl-custom-like {
   display: inline-flex !important;
   align-items: center !important;
   cursor: pointer !important;
   margin-left: 10px;
   padding: 2px 6px;
-  font-size: 1em;
+  font-size: 1.1em;
   border-radius: 6px;
-  color: #666;
-  opacity: 0.6;
-  transition: all 0.3s ease;
+  color: #aaa; /* 未点时灰色 */
+  opacity: 0.8;
+  transition: all 0.25s ease;
   user-select: none;
+  background: transparent;
 }
 
 #waline .wl-custom-like:hover {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
+/* 点赞后变红并放大 */
 #waline .wl-custom-like.active {
-  color: #ff6b6b !important;
-  opacity: 1 !important;
+  color: #e74c3c !important; /* 红色爱心 */
+  opacity: 1;
   transform: scale(1.2);
 }
 
+/* 爱心计数 */
 #waline .wl-custom-like .wl-like-count {
   margin-left: 5px;
   font-size: 0.9em;
 }
 
 /* ==============================
-   评论区整体优化
+   评论框整体风格：白绿简约
    ============================== */
-
 #waline {
   border: none !important;
   box-shadow: none !important;
+  background: #fff !important;
 }
 
 #waline .wl-editor {
   border-radius: 10px !important;
-  border: 1px solid #ddd !important;
+  border: 1px solid #E0E0E0 !important;
+  background-color: #FAFAFA !important;
 }
 
 #waline .wl-btn {
   border-radius: 8px !important;
-  background-color: #ff6b6b !important;
+  background-color: #4CAF50 !important;
   color: white !important;
   border: none !important;
+  transition: background-color 0.3s ease;
 }
 
 #waline .wl-btn:hover {
-  background-color: #ff4b4b !important;
+  background-color: #43A047 !important;
 }

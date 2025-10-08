@@ -241,33 +241,34 @@
           login: "enable",
           locale: {
             admin: "👑 作者",
-            reactionTitle: "", // 去掉反应标题
+            reactionTitle: "",
           },
-          reaction: ["heart"], // 保留一个“爱心”反应
+          reaction: ["heart"],
           requiredMeta: ["nick"],
           meta: ["nick"],
-          pageview: false, // 可选：关闭浏览量统计
+          pageview: false,
           path: location.pathname,
 
-          // 极简视觉主题
+          // 白绿基调
           light: {
-            "--waline-theme-color": "#ff6b6b",
-            "--waline-active-color": "#ff4b4b",
-            "--waline-border-color": "#eee",
-            "--waline-bg-color": "#fff",
+            "--waline-theme-color": "#4CAF50",
+            "--waline-active-color": "#43A047",
+            "--waline-border-color": "#E0E0E0",
+            "--waline-bg-color": "#FFFFFF",
+            "--waline-text-color": "#333333",
             "--waline-font-size": "16px",
             "--waline-box-shadow": "none",
             "--waline-avatar-radius": "50%",
-            "--waline-bq-color": "#fafafa",
+            "--waline-bq-color": "#F9FAF9",
             "--waline-font-family":
               "Noto Serif SC, var(--english-font), serif",
           },
         });
 
-        // 手动注入一个简洁的爱心按钮（替代复杂反应区）
+        // 注入爱心按钮
         const likeHTML = `
           <div class="wl-custom-like" id="wl-like-btn">
-            ❤️ <span class="wl-like-count">0</span>
+            🤍 <span class="wl-like-count">0</span>
           </div>
         `;
         const commentHeader = document.querySelector(".wl-header");
@@ -276,13 +277,18 @@
 
           const likeBtn = document.getElementById("wl-like-btn");
           likeBtn.addEventListener("click", () => {
-            likeBtn.classList.toggle("active");
             const countEl = likeBtn.querySelector(".wl-like-count");
             let count = parseInt(countEl.textContent);
-            if (likeBtn.classList.contains("active")) {
-              countEl.textContent = count + 1;
+            const isActive = likeBtn.classList.toggle("active");
+
+            // 切换符号 + 颜色
+            if (isActive) {
+              likeBtn.innerHTML = `❤️ <span class="wl-like-count">${count + 1}</span>`;
             } else {
-              countEl.textContent = Math.max(0, count - 1);
+              likeBtn.innerHTML = `🤍 <span class="wl-like-count">${Math.max(
+                0,
+                count - 1
+              )}</span>`;
             }
           });
         }
