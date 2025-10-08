@@ -302,20 +302,3 @@ hr.post-heading-small,
 .post-content pre p {
     text-indent: 0 !important;
 }
-
-/* ==============================
-   解决 Bootstrap 栅格导致首行缩进失效
-   ============================== */
-.col-lg-8.col-lg-offset-2,
-.col-md-10.col-md-offset-1 {
-    display: block !important;  /* 恢复块级布局 */
-}
-
-.post-content p {
-    display: block !important;   /* 块级段落 */
-    text-indent: 2ch !important; /* 首行缩进 */
-    margin-top: 0 !important;
-    margin-bottom: 1.5em !important;
-    line-height: 1.9 !important;
-    font-family: 'Noto Serif SC', serif !important;
-}
