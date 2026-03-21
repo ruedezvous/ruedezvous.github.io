@@ -201,61 +201,7 @@ hr.post-heading-small,
     }
 }
 
-/* ==================================================
- * Waline 极简模式：最终 CSS 修正 (只保留昵称和评论框)
- * ================================================== */
-
-/* 隐藏邮箱、网址输入框 */
-.wl-meta-list .wl-meta-input:nth-child(2),
-.wl-meta-list .wl-meta-input:nth-child(3) {
-  display: none !important;
-}
-
-/* 字体统一 */
-:root {
-  --waline-font-size: 15px !important;
-}
-
-#waline .wl-content,
-#waline .wl-nick {
-  font-size: var(--waline-font-size) !important;
-  font-family: "Noto Serif SC", var(--english-font), serif !important;
-  color: #333 !important;
-}
-
-/* 隐藏无关标题 */
-#waline .wl-reaction-title {
-  display: none !important;
-}
-
-
-/* ==============================
-   评论框整体风格：白绿简约
-   ============================== */
-#waline {
-  border: none !important;
-  box-shadow: none !important;
-  background: #fff !important;
-}
-
-#waline .wl-editor {
-  border-radius: 10px !important;
-  border: 1px solid #E0E0E0 !important;
-  background-color: #FAFAFA !important;
-}
-
-#waline .wl-btn {
-  border-radius: 8px !important;
-  background-color: #4CAF50 !important;
-  color: white !important;
-  border: none !important;
-  transition: background-color 0.3s ease;
-}
-
-#waline .wl-btn:hover {
-  background-color: #43A047 !important;
-}
-
+#cusdis_thread { font-family: inherit !important; }
 
 /* ==============================
    Hexo Post 正文优化
