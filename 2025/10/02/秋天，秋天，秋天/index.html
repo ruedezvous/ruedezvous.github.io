@@ -260,28 +260,23 @@
             
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     
-  <hr />
-  <h3>Comments:</h3>
-
-  <div id="waline" style="padding-top: 20px;"></div>
-
-  <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.Waline && document.getElementById("waline")) {
-        Waline.init({
-          el: '#waline',
-          serverURL: 'https://myblogcomments-five.vercel.app/',
-          locale: { admin: '👑 作者' },
-          requiredMeta: ['nick'],  // 匿名用户必须填写昵称
-          meta: ['nick'],
-          reaction: ['https://app.unpkg.com/@waline/emojis@1.1.0/files/weibo/weibo_love.png'],
-          pageview: true,          // 允许页面浏览量记录
-          path: location.pathname, // 每篇文章独立统计
-          login: 'enable',         // 启用登录（支持匿名）
-        });
-      }
-    });
-  </script>
+  <section id="comments" style="margin-top: 50px;">
+    </section>
+	<script src="https://giscus.app/client.js"
+        data-repo="ruedezvous/ruedezvous.github.io"
+        data-repo-id="R_kgDOP64UfA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOP64UfM4C46Ce"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="0"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+        </script>
 
 
                 </div>
@@ -320,7 +315,7 @@
                     
 
                     
-		<p class="copyright text-muted">&copy; 2025 在浴缸思考阮玲玉<br></p>
+		<p class="copyright text-muted">&copy; 2026 在浴缸思考阮玲玉<br></p>
             </div>
         </div>
     </div>
